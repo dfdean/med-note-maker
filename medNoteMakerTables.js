@@ -1395,7 +1395,10 @@ var g_AllOptionsDeclaration = {
     ///////////////////////////////////////////////////////////
     // ANEMIA
     ///////////////////////////////////////////////////////////
-    // Modifiers
+    // Plan and Modifiers
+    "AnemiaPrimaryIssue" : { "ButtonLabelList" : ["Anemia"], "ValueList" : ["Anemia"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "ThrombocytopeniaPrimaryIssue" : { "ButtonLabelList" : ["Thrombocytopenia"], "ValueList" : ["Thrombocytopenia"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "LeukopeniaPrimaryIssue" : { "ButtonLabelList" : ["Leukopenia"], "ValueList" : ["Leukopenia"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaAcuteChronicModifier" : { "ButtonLabelList" : ["Acute", "Acute on Chronic", "Chronic"], "ValueList" : ["Acute", "Acute on Chronic", "Chronic"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaChronicDiseaseModifier" : { "ButtonLabelList" : ["ChronicDisease"], "ValueList" : ["Anemia of Chronic Inflammation"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCKDModifier" : { "ButtonLabelList" : ["CKD"], "ValueList" : ["Anemia of Chronic Kidney Disease"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
@@ -1404,6 +1407,7 @@ var g_AllOptionsDeclaration = {
 
     // Status
     "AnemiaShowHgbOption" : { "ButtonLabelList" : ["Show Hgb"], "ValueList" : ["Latest Hgb is "], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaShowPltsOption" : { "ButtonLabelList" : ["Show Plts"], "ValueList" : ["Latest Plts is "], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaShowMCVOption" : { "ButtonLabelList" : ["Show MCV"], "ValueList" : ["MCV is "], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaShowBUNOption" : { "ButtonLabelList" : ["High BUN", "Low BUN"], "ValueList" : ["BUN is high, suggesting possible Hgb digestion and an upper GI bleed", "BUN is low, not consistent with Hgb digestion so suggesting a lower GI bleed"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
 
@@ -1424,34 +1428,47 @@ var g_AllOptionsDeclaration = {
     "AnemiaFolateStatusOption" : { "ButtonLabelList" : ["Folate WNL", "Folate Low"], "ValueList" : ["Folate is normal", "Folate is low"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
 
 
-
-    //Workup
-    "AnemiaCheckINROption" : { "ButtonLabelList" : ["INR"], "ValueList" : ["INR"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckHemoccultOption" : { "ButtonLabelList" : ["Hemoccult"], "ValueList" : ["Hemoccult"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // Hemolysis Workup
+    "AnemiaCheckSchistocyteSmearOption" : { "ButtonLabelList" : ["Smear"], "ValueList" : ["Schistocyte smear"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckHaptoglobinOption" : { "ButtonLabelList" : ["Haptoglobin"], "ValueList" : ["Haptoglobin"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckLDHOption" : { "ButtonLabelList" : ["LDH"], "ValueList" : ["LDH"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckFreeHgbOption" : { "ButtonLabelList" : ["Free Hgb"], "ValueList" : ["Free Hgb"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckFibrinogenOption" : { "ButtonLabelList" : ["Fibrinogen"], "ValueList" : ["Fibrinogen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckReticulocyteCountOption" : { "ButtonLabelList" : ["Reticulocyte count"], "ValueList" : ["Reticulocyte count"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // Iron Workup
     "AnemiaCheckTransferrinOption" : { "ButtonLabelList" : ["Transferrin"], "ValueList" : ["Transferrin"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckIronBindingSaturationOption" : { "ButtonLabelList" : ["Iron sat"], "ValueList" : ["Iron binding saturation"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckFerritinOption" : { "ButtonLabelList" : ["Ferritin"], "ValueList" : ["Ferritin (below 15 is usually Fe deficiency, but Ferritin is also an acute phase reactant)"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckTIBCOption" : { "ButtonLabelList" : ["TIBC"], "ValueList" : ["TIBC"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // GI Loss Workup
+    "AnemiaCheckHemoccultOption" : { "ButtonLabelList" : ["Hemoccult"], "ValueList" : ["Hemoccult"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckHPyloriOption" : { "ButtonLabelList" : ["H pylori"], "ValueList" : ["H pylori stool antigen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckCeliacOption" : { "ButtonLabelList" : ["Celiac"], "ValueList" : ["tissue transglutaminase antibodies and anti-gliaden for possible celiac"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckGIPanelOption" : { "ButtonLabelList" : ["GI Panel"], "ValueList" : ["stool GI Panel"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // Nutrients Workup
     "AnemiaCheckB12Option" : { "ButtonLabelList" : ["B12"], "ValueList" : ["B12"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckFolateOption" : { "ButtonLabelList" : ["Folate"], "ValueList" : ["Folate"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckVitKOption" : { "ButtonLabelList" : ["Vit K"], "ValueList" : ["Vit K level"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckCopperOption" : { "ButtonLabelList" : ["Copper"], "ValueList" : ["copper level"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckZincOption" : { "ButtonLabelList" : ["Zinc"], "ValueList" : ["zinc level"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckHPyloriOption" : { "ButtonLabelList" : ["H pylori"], "ValueList" : ["H pylori stool antigen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckINROption" : { "ButtonLabelList" : ["INR"], "ValueList" : ["INR"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // Infectious
     "AnemiaCheckHIVOption" : { "ButtonLabelList" : ["HIV"], "ValueList" : ["HIV"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckHBVOption" : { "ButtonLabelList" : ["HBV"], "ValueList" : ["Hep B antigen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckEBVOption" : { "ButtonLabelList" : ["EBV"], "ValueList" : ["EBV"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckParvoOption" : { "ButtonLabelList" : ["Parvo"], "ValueList" : ["Parvo"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckPeripheralSmearOption" : { "ButtonLabelList" : ["Peripheral smear"], "ValueList" : ["Peripheral smear"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckFibrinogenOption" : { "ButtonLabelList" : ["Fibrinogen"], "ValueList" : ["Fibrinogen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckDirectCoombsOption" : { "ButtonLabelList" : ["Direct Coombs"], "ValueList" : ["Direct Coombs"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckHaptoglobinOption" : { "ButtonLabelList" : ["Haptoglobin"], "ValueList" : ["Haptoglobin"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckLDHOption" : { "ButtonLabelList" : ["LDH"], "ValueList" : ["LDH"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // Autoimmune
+    "AnemiaCheckDATOption" : { "ButtonLabelList" : ["DAT"], "ValueList" : ["Direct Antiglobulin Test"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckWarmAgglutininsOption" : { "ButtonLabelList" : ["Warm Agglutinins"], "ValueList" : ["Warm Agglutinins"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckColdAgglutininsOption" : { "ButtonLabelList" : ["Cold Agglutinins"], "ValueList" : ["Cold Agglutinins"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckANAOption" : { "ButtonLabelList" : ["ANA"], "ValueList" : ["ANA"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
-    "AnemiaCheckCeliacOption" : { "ButtonLabelList" : ["Celiac"], "ValueList" : ["tissue transglutaminase antibodies and anti-gliaden for possible celiac"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckAntiphospholipidOption" : { "ButtonLabelList" : ["AntiPhospholipid"], "ValueList" : ["Anti-Cardiolipin, anti-Beta2 Glycoprotein, Lupus Anticoagulant, ANA"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckADAMTS13Option" : { "ButtonLabelList" : ["ADAMTS13"], "ValueList" : ["Anti-ADAMTS13"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckHITOption" : { "ButtonLabelList" : ["HIT"], "ValueList" : ["HIT antibodies (anti-platelet factor 4)"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // Malignancy
+    "AnemiaCheckSPEPOption" : { "ButtonLabelList" : ["SPEP"], "ValueList" : ["SPEP and Free Light Chains"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckFullSmearOption" : { "ButtonLabelList" : ["Smear"], "ValueList" : ["Peripheral Smear"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    // Toxins
+    "AnemiaCheckHeavyMetalsOption" : { "ButtonLabelList" : ["Lead"], "ValueList" : ["Heavy Metals and Lead"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
 
     // Monitor
     "AnemiaMonitorHgbOption" : { "ButtonLabelList" : ["Hgb Q4h", "Hgb Q6h", "Hgb Q8h", "Hgb Q12h"], "ValueList" : ["Check Hgb Q4h", "Check Hgb Q6h", "Check Hgb Q8h", "Check Hgb Q12h"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
@@ -1463,6 +1480,7 @@ var g_AllOptionsDeclaration = {
     "AnemiaPOIronOption" : { "ButtonLabelList" : ["PO Iron"], "ValueList" : ["Replace Iron (Ferrous Sulfate PO) and Folate (Folate 1mg PO daily)"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaPRNTransfuseOption" : { "ButtonLabelList" : ["Transfuse at 7", "Transfuse at 8"], "ValueList" : ["Transfuse to keep Hgb over 7", "Transfuse to keep Hgb over 8 due to heart failure"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaPPIOption" : { "ButtonLabelList" : ["PPI", "IV PPI"], "ValueList" : ["Pantoprazole 40mg PO daily", "IV Pantoprazole - 40mg IV bid"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+
 
 
     ///////////////////////////////////////////////////////////

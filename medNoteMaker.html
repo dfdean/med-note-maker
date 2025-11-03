@@ -219,7 +219,7 @@
 
 <tr>
     <td><b>Misc</b></td> 
-    <td><input type="button" id="AnemiaPlan" value="Anemia" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
+    <td><input type="button" id="AnemiaPlan" value="Anemia/Thrombo" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="OncologyPlan" value="Oncology" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="EncephalopathyPlan" value="AMS" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="SyncopePlan" value="Syncope" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
@@ -3232,14 +3232,14 @@ Hemorrhage Class
 
 
 <!-------------------------------------------------------->
-<!-- ANEMIA CONTROL PANEL -->
+<!-- ANEMIA and THROMBOCYTOPENIA CONTROL PANEL -->
 <!-------------------------------------------------------->
 <div id="ANEMIA_CONTROL_PANEL">
 
 <div xID="CPHeader">
     <table border="0" style="border-spacing:0.1em;">
         <tr>
-        <td><b><u>Anemia</u></b></td>
+        <td><b><u>Anemia and Thrombocytopenia</u></b></td>
         <td><input type="button" value="Tiny Plan" class="CPOptionDisabledStyle" onclick="MedNote_ToggleTinyPlan(this, 'AnemiaPlan')" ></td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td><input type="button" value="Show Hints" class="CPGroupOnStyle" onclick="MedNote_CPToggleHints(this)" ></td>
@@ -3255,7 +3255,14 @@ Hemorrhage Class
     <table border="0" style="border-spacing:0.1em;">
         <tr>
         <td>&nbsp;</td>
+        <td><input type="button" id="AnemiaPrimaryIssue" value="Anemia" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="ThrombocytopeniaPrimaryIssue" value="Thrombocytopenia" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="LeukopeniaPrimaryIssue" value="Leukopenia" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaAcuteChronicModifier" value="Acute" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        </tr>
+
+        <tr>
+        <td>&nbsp;</td>
         <td><input type="button" id="AnemiaCKDModifier" value="CKD" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaChronicDiseaseModifier" value="ChronicDisease" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaBloodLossModifier" value="BloodLoss" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
@@ -3270,6 +3277,7 @@ Hemorrhage Class
     <tr>
         <td><input type="button" value="Status" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
         <td><input type="button" id="AnemiaShowHgbOption" value="Show Hgb" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaShowPltsOption" value="Show Plts" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaShowMCVOption" value="Show MCV" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaShowBUNOption" value="Show BUN" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
@@ -3313,19 +3321,18 @@ Hemorrhage Class
     </table>
 
 
-
-
     <!-- WORKUP -->
     <br><u><b>Workup:</b></u>
     <table border="0" style="border-spacing:0.1em; padding:10px;">
     <tr>
         <td><input type="button" value="Hemolysis" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="AnemiaCheckPeripheralSmearOption" value="Peripheral smear" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckSchistocyteSmearOption" value="Smear" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckLDHOption" value="LDH" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckHaptoglobinOption" value="Haptoglobin" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckFreeHgbOption" value="Free Hgb" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckFibrinogenOption" value="Fibrinogen" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckReticulocyteCountOption" value="Reticulocyte count" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
-
 
     <tr>
         <td><input type="button" value="Iron" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
@@ -3340,6 +3347,7 @@ Hemorrhage Class
         <td><input type="button" id="AnemiaCheckHemoccultOption" value="Hemoccult" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckHPyloriOption" value="H pylori" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckCeliacOption" value="Celiac" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckGIPanelOption" value="GI Panel" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     <tr>
@@ -3349,12 +3357,11 @@ Hemorrhage Class
         <td><input type="button" id="AnemiaCheckZincOption" value="Zinc" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckCopperOption" value="Copper" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckVitKOption" value="Vit K" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckINROption" value="INR" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     <tr>
         <td><input type="button" value="Infection" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="AnemiaCheckINROption" value="INR" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AnemiaCheckFibrinogenOption" value="Fibrinogen" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckHIVOption" value="HIV" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckEBVOption" value="EBV" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckHBVOption" value="HBV" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
@@ -3363,10 +3370,23 @@ Hemorrhage Class
 
     <tr>
         <td><input type="button" value="Autoimmune" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="AnemiaCheckDirectCoombsOption" value="Direct Coombs" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckDATOption" value="DAT" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckWarmAgglutininsOption" value="Warm Agglutinins" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AnemiaCheckColdAgglutininsOption" value="Cold Agglutinins" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AnemiaCheckANAOption" value="ANA" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckAntiphospholipidOption" value="AntiPhospholipid" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckADAMTS13Option" value="ADAMTS13" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckHITOption" value="HIT" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Malignancy" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckSPEPOption" value="SPEP" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckFullSmearOption" value="Smear" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Toxins" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AnemiaCheckHeavyMetalsOption" value="Lead" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
     </table>
 
@@ -3402,6 +3422,32 @@ Hemorrhage Class
         <li>Anemia of Chronic Inflammation has Normal/High Ferritin, normal/Low Transferrin
         <li>Iron-Deficiency Anemia has Low Ferritin, High Transferrin
     </ul>
+
+
+    <h3>ITP</h3><br>
+    Generally a diagnosis of exclusion, no megakaryocytes on peripheral smear however MPV elevated indicating larger platelets.
+
+    <h3>Primary bone marrow disorder</h3><br>
+
+    <h3>HIT</h3><br>
+    If normal prior to admit then the timing could fit with low platelet count.
+
+    <h3>DIC</h3><br>
+    Expect high INR, low fibrinogen and fever
+
+    <h3>Hemolytic anemia or TMA</h3><br>
+    Expect hemolysis labs (hapto, LDH), schistocytes
+
+    <h3>RBC production issues</h3><br>
+    Low folate, B12, TSH
+
+    <h3>Infectious causes</h3><br>
+    EBV, HIV, and hep C normal
+
+<!--
+Presence of nucleated RBC on CBC/Diff but low reticulocytes (inappropriate for degree of anemia) suggests that there may be a leukoerythroblastic picture of marrow infiltration. The relative rapidity of development of thrombocytopenia is concerning and a mixed picture anemia could be present that although low reticulocytosis, there may be a hemolytic process (without clear compensatory reticulocytosis) even though LDH, bilirubin and haptoglobin do not suggest hemolysis.
+-Of the most concerning causes of thrombocytopenia: TMA, DIC, ITP, HIT would be in the differential.
+-->
     </div> <!-- xID="CPHintText" -->
 
 </div> <!-- xID="CPBody" -->

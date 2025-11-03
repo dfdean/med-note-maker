@@ -29,7 +29,7 @@ var g_BASELINE_SOFA_SCORE = 0;
 var g_CURRENT_SOFA_SCORE = 0;
 var g_SOFA_DIFFERENNCES = "";
 
-var INVALID_NUMBER = -31415927
+var INVALID_NUMBER = -31415927;
 
 
 //////////////////////////////////////////
@@ -185,7 +185,7 @@ WriteCirrhosisPlan() {
     var optionNameList = [ "CirrhosisViralHepOption", "CirrhosisANAOption", "CirrhosisSmoothMuscleOption", 
                         "CirrhosisMitoOption", "CirrhosisAntiLiverKidneyOption", "CirrhosisAntiLiverOption",
                         "CirrhosisFerritinOption", "CirrhosisCeruloplasmOption", "CirrhosisAntiTyypsinOption"];
-    WriteListOfSelectedActions(activeControlPanel, "Workup etiology, check ", optionNameList)
+    WriteListOfSelectedActions(activeControlPanel, "Workup etiology, check ", optionNameList);
 
     // Varices
     subPlanActionList = ["CirrhosisEGDResultOption", "CirrhosisGIBleedOption", "CirrhosisPropranololOption"];
@@ -195,7 +195,7 @@ WriteCirrhosisPlan() {
     subPlanActionList = ["CirrhosisParaResultOption", "CirrhosisDopplersOption", "CirrhosisExplainDiureticsOption",
                         "CirrhosisHoldDiureticsOption", "CirrhosisLasixOption", "CirrhosisSpironolactoneOption",
                         "CirrhosisSBPAntibioticsOption", "Cirrhosis2gNaDietOption"];
-    MedNode_WriteSubPlan("Ascites", subPlanActionList)
+    MedNode_WriteSubPlan("Ascites", subPlanActionList);
 
     // Encephalopathy
     subPlanActionList = ["CirrhosisLactuloseOption", "CirrhosisRifaximinOption"];
@@ -209,7 +209,7 @@ WriteCirrhosisPlan() {
 
     // Coagulopathy
     subPlanActionList = ["CirrhosisNoBleedOption", "CirrhosisCheckINROption"];
-    MedNode_WriteSubPlan("Coagulopathy", subPlanActionList)
+    MedNode_WriteSubPlan("Coagulopathy", subPlanActionList);
 
     // Immunity
     subPlanActionList = ["CirrhosisHAVVaccineOption"];
@@ -222,15 +222,15 @@ WriteCirrhosisPlan() {
 
     // NASH
     subPlanActionList = ["CirrhosisStatinOption", "CirrhosisVitEOption"];
-    MedNode_WriteSubPlan("NASH", subPlanActionList)
+    MedNode_WriteSubPlan("NASH", subPlanActionList);
 
     // Nutrition
     subPlanActionList = ["CirrhosisZincOption", "CirrhosisThiamineOption", "CirrhosisVitaminOption"];
-    MedNode_WriteSubPlan("Nutrition", subPlanActionList)
+    MedNode_WriteSubPlan("Nutrition", subPlanActionList);
 
     // Transplant
     subPlanActionList = ["CirrhosisStatusTransplantOption", "CirrhosisReferToTransplantOption"];
-    MedNode_WriteSubPlan("Transplant", subPlanActionList)
+    MedNode_WriteSubPlan("Transplant", subPlanActionList);
 
     // Add any footer plans.
     if (MedNote_GetCPOptionBool("CirrhosisCoagulopathyOption")) {
@@ -4484,9 +4484,11 @@ WriteCovidPlan() {
 //
 // [WriteAnemiaPlan]
 //
-// Updated 2022-9-25
-// Updated 2022-1-18
-// Updated 2020-5-24
+// 2020-5-24 - Updated
+// 2022-1-18 - Updated
+// 2022-9-25 - Updated
+// 2023-11-14 - Combined workup labs into a single task
+// 2025-11-3 - Add thrombocytopenia, more workup for autoimmune
 ////////////////////////////////////////////////////////////////////////////////
 function 
 WriteAnemiaPlan() {
@@ -4496,17 +4498,21 @@ WriteAnemiaPlan() {
 
     ///////////////////
     // Start the plan section
-    planStr = "Anemia";
+    var anemiaPlanStr = MedNote_GetCPOptionValue("AnemiaPrimaryIssue");
+    var thromboPlanStr = MedNote_GetCPOptionValue("ThrombocytopeniaPrimaryIssue");
+    var leukoPlanStr = MedNote_GetCPOptionValue("LeukopeniaPrimaryIssue");
+    if ((anemiaPlanStr != null) && (anemiaPlanStr != "")) {
+        planStr = anemiaPlanStr;
+    } else if ((thromboPlanStr != null) && (thromboPlanStr != "")) {
+        planStr = thromboPlanStr;
+    } else if ((leukoPlanStr != null) && (leukoPlanStr != "")) {
+        planStr = leukoPlanStr;
+    } else {
+        planStr = "Anemia";
+    }
     modifierStr = MedNote_GetCPOptionValue("AnemiaAcuteChronicModifier");
     if ((modifierStr != null) && (modifierStr != "")) {
         planStr = modifierStr + " " + planStr;
-    }
-    modifierStr = MedNote_GetCPOptionValue("AnemiaChronicDiseaseModifier");
-    if ((modifierStr != null) && (modifierStr != "")) {
-        planStr = modifierStr;
-    }
-    if (PrintSingleLinePlanAtEnd('AnemiaPlan', planStr, "Transfuse for Hgb below 7")) {
-        return
     }
     activeControlPanel = MedNote_StartNewPlanSection(planStr, "AnemiaPlan");
     if (!activeControlPanel) {
@@ -4514,13 +4520,26 @@ WriteAnemiaPlan() {
         return;
     }
 
-    // Modifiers
+    // Handle tiny plan
+    if (PrintSingleLinePlanAtEnd('AnemiaPlan', planStr, "Transfuse for Hgb below 7")) {
+        return;
+    }
+
+
+    // Subplans
+    if ((planStr != thromboPlanStr) && (thromboPlanStr != null) && (thromboPlanStr != "")) {
+        MedNote_AddRelatedProblem(thromboPlanStr);
+    }
+    if ((planStr != leukoPlanStr) && (leukoPlanStr != null) && (leukoPlanStr != "")) {
+        MedNote_AddRelatedProblem(leukoPlanStr);
+    }
     MedNote_AddRelatedProblemIfSelected(activeControlPanel, "AnemiaCKDModifier");
+    MedNote_AddRelatedProblemIfSelected(activeControlPanel, "AnemiaChronicDiseaseModifier");
     MedNote_AddRelatedProblemIfSelected(activeControlPanel, "AnemiaBloodLossModifier");
     MedNote_AddRelatedProblemIfSelected(activeControlPanel, "AnemiaMicrocyticModifier");
 
     // Type
-    var optionNameList = [ "AnemiaShowHgbOption", "AnemiaShowMCVOption"];
+    var optionNameList = [ "AnemiaShowHgbOption", "AnemiaShowPltsOption", "AnemiaShowMCVOption"];
     WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "")
     WriteCommentIfSelected(activeControlPanel, "AnemiaShowBUNOption");
 
@@ -4616,22 +4635,23 @@ WriteAnemiaPlan() {
 
     ///////////////////////////
     //Workup
-    var optionNameList = [ "AnemiaCheckPeripheralSmearOption", "AnemiaCheckLDHOption", "AnemiaCheckHaptoglobinOption", 
-                            "AnemiaCheckReticulocyteCountOption" ];
+    var optionNameList = [ "AnemiaCheckSchistocyteSmearOption", "AnemiaCheckLDHOption", "AnemiaCheckHaptoglobinOption", 
+                            "AnemiaCheckFreeHgbOption", "AnemiaCheckFibrinogenOption", "AnemiaCheckReticulocyteCountOption" ];
     WriteListOfSelectedActions(activeControlPanel, "Check for hemolysis: ", optionNameList)
 
     ///////////////////////////
-    var optionNameList = [ "AnemiaCheckTransferrinOption", "AnemiaCheckTIBCOption", "AnemiaCheckIronBindingSaturationOption", "AnemiaCheckFerritinOption"];
+    var optionNameList = [ "AnemiaCheckTransferrinOption", "AnemiaCheckTIBCOption", "AnemiaCheckIronBindingSaturationOption", 
+                            "AnemiaCheckFerritinOption"];
     WriteListOfSelectedActions(activeControlPanel, "Check iron levels: ", optionNameList)
 
     ///////////////////////////
     var optionNameList = [ "AnemiaCheckHemoccultOption", "AnemiaCheckHPyloriOption", "AnemiaCheckCeliacOption", 
-                            "AnemiaCheckINROption"];
+                            "AnemiaCheckGIPanelOption"];
     WriteListOfSelectedActions(activeControlPanel, "Check GI loss: ", optionNameList)
 
     ///////////////////////////
     var optionNameList = [ "AnemiaCheckB12Option", "AnemiaCheckFolateOption", "AnemiaCheckZincOption", 
-                            "AnemiaCheckCopperOption", "AnemiaCheckVitKOption"];
+                            "AnemiaCheckCopperOption", "AnemiaCheckVitKOption", "AnemiaCheckINROption"];
     WriteListOfSelectedActions(activeControlPanel, "Check nutrients: ", optionNameList)
 
     ///////////////////////////
@@ -4640,9 +4660,18 @@ WriteAnemiaPlan() {
     WriteListOfSelectedActions(activeControlPanel, "Check infectious causes: ", optionNameList)
 
     ///////////////////////////
-    var optionNameList = [ "AnemiaCheckDirectCoombsOption", "AnemiaCheckWarmAgglutininsOption", 
-                            "AnemiaCheckColdAgglutininsOption", "AnemiaCheckANAOption"];
+    var optionNameList = [ "AnemiaCheckDATOption", "AnemiaCheckWarmAgglutininsOption", 
+                            "AnemiaCheckColdAgglutininsOption", "AnemiaCheckAntiphospholipidOption",
+                            "AnemiaCheckADAMTS13Option", "AnemiaCheckHITOption"];
     WriteListOfSelectedActions(activeControlPanel, "Check autoimmune causes: ", optionNameList)
+
+    ///////////////////////////
+    var optionNameList = [ "AnemiaCheckSPEPOption", "AnemiaCheckFullSmearOption"];
+    WriteListOfSelectedActions(activeControlPanel, "Check malignancy causes: ", optionNameList)
+
+    ///////////////////////////
+    var optionNameList = [ "AnemiaCheckHeavyMetalsOption"];
+    WriteListOfSelectedActions(activeControlPanel, "Check toxin causes: ", optionNameList)
 
 
     // Monitor
@@ -7227,28 +7256,28 @@ WriteCHFPlan() {
     // ACE/ARB
     var optionNameList = [ 'CHFLisinoprilOption', 'CHFLosartanOption', 'CHFARNIOption',
             'CHFReplaceACEARBOption', 'CHFNoACEARBOption']; 
-    WriteListOfSubActions("Angiotensin Blockade", optionNameList)
+    WriteListOfSubActions("Angiotensin Blockade", optionNameList);
 
     // Beta Blockers
     var optionNameList = [ 'CHFMetoprololTarOption', 'CHFMetoprololSuccOption', 'CHFCarvedilolOption',
             'CHFNSBBOption', 'CHFNoBetaBlockerOption']; 
-    WriteListOfSubActions("Beta Blockade", optionNameList)
+    WriteListOfSubActions("Beta Blockade", optionNameList);
 
     // SGLT2
     var optionNameList = [ 'CHFSGLT2DapagliflozinOption', 'CHFSGLT2EmpagliflozinOption', 
             'CHFSGLT2ReduceInsulinOption', 'CHFSGLT2ExplainGFRDropOption', 'CHFNoSGLT2Option']; 
-    WriteListOfSubActions("SGLT2 Inhibitor", optionNameList)
+    WriteListOfSubActions("SGLT2 Inhibitor", optionNameList);
 
     // MRA
     var optionNameList = [ 'CHFSpironiolactoneOption', 'CHFNoMRAOption']; 
-    WriteListOfSubActions("Aldo Blockade", optionNameList)
+    WriteListOfSubActions("Aldo Blockade", optionNameList);
 
     // Diuresis
     var optionNameList = [ 'CHFLasixIVOption', 'CHFLasixPOOption', 'CHFTorsemideOption',
             'CHFBumexOption', 'CHFThiazideOption', 'CHFDiureticMRAOption', 
             'CHFAcetazolamideOption', 'CHFAmilorideOption', 'CHFKClOption',
             'CHFNoDiureticOption']; 
-    WriteListOfSubActions("Diuresis", optionNameList)
+    WriteListOfSubActions("Diuresis", optionNameList);
 
     ///////////////////////////////
     // Oxygen, Diet and Fluids
