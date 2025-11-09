@@ -1441,6 +1441,8 @@ MedNote_OnCPOptionButton(button) {
             button.className = "CPOptionOnStyle";
         } else if ((toggleBehavior != null) && (toggleBehavior == "OK/Other/NA")) {
             button.className = "CPOptionOtherStyle";
+        } else if ((toggleBehavior != null) && (toggleBehavior == "Options")) {
+            button.className = "CPOptionOtherStyle";
         } else {
             button.className = "CPOptionOffStyle";
         }

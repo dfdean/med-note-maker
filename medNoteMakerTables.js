@@ -481,26 +481,41 @@ var g_AllOptionsDeclaration = {
     "CodeStatusOption" : { "ButtonLabelList" : ["Full Code", "DNR", "DNR-OK Intub"], "ValueList" : ["FULL CODE", "DNR/DNI", "DNR, Intubation OK"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : 0, "InitialToggleState" : 0, "savedToggleState" : 0, "PlanSectionID" : "PlanFooter"},
 
 
+
+
+
+
     ///////////////////////////////////////////////////////////
     // CIRRHOSIS
     ///////////////////////////////////////////////////////////
-    // General
-    "CirrhosisPossibleOption" : { "ButtonLabelList" : ["Possible", "Likely", "Decompensated"], "ValueList" : ["Possible", "Likely", "Decompensated"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+
+    // Diagnosis and Subplans
+    "CirrhosisDiagnosidOption" : { "ButtonLabelList" : ["ACLD", "Cirrhosis", "CLD"], "ValueList" : ["Advanced Chronic Liver Disease", "Cirrhosis", "Liver Disease"], "htmlButton" : null, "toggleBehavior" : "Options", "toggleState" : 0, "InitialToggleState" : 0, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisDecompensatedModifierOption" : { "ButtonLabelList" : ["Decompensated"], "ValueList" : ["Decompensated"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
     "CirrhosisCoagulopathyOption" : { "ButtonLabelList" : ["Coagulopathy"], "ValueList" : ["Coagulopathy"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
     "CirrhosisThrombocytopeniaOption" : { "ButtonLabelList" : ["Thrombocytopenia"], "ValueList" : ["Thrombocytopenia"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
-    "CirrhosisCauseOption" : { "ButtonLabelList" : ["EtOH", "NASH", "ViralHep"], "ValueList" : ["The suspected cause is Alcoholic", "The suspected cause is NASH", "The suspected cause is Viral Hepatitis"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
-    "CirrhosisBiopsyRecordOption" : { "ButtonLabelList" : ["No Biopsy", "Likely", "Biopsy"], "ValueList" : ["No liver biopsy found in the available medical record", "No liver biopsy record found, but there are other findings conststent with Cirrhosis", "Biopsy proven"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
 
+    // Diagnosis criteria
+    "CirrhosisDiagnosisCriteriaOption" : { "ButtonLabelList" : ["ACLD Criteria 1", "ACLD Criteria 2", "No ACLD Criteria", "Likely", "No Elastography"], "ValueList" : ["This meets ACLD criteria because Liver Stiffness Measurements is 15kPa or more", "This meets ACLD criteria because Liver Stiffness Measurements is between 10KPa and 15kPa and also Platelets are below 110", "This does not meets ACLD criteria because Liver Stiffness Measurements is below 10kPa", "No elastography found in the available medical record, but there are other findings consistent with ACLD", "No elastography found in the available medical record"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisBiopsyRecordOption" : { "ButtonLabelList" : ["No Biopsy", "Biopsy"], "ValueList" : ["No liver biopsy found in the available medical record", "Biopsy proven"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisCauseOption" : { "ButtonLabelList" : ["EtOH", "NASH", "ViralHep"], "ValueList" : ["The suspected cause is Alcoholic", "The suspected cause is NASH", "The suspected cause is Viral Hepatitis"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+
+    // Decompensation Criteria
+    "CirrhosisDecompAscitesOption" : { "ButtonLabelList" : ["Ascites"], "ValueList" : ["Ascites"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisDecompVaricesOption" : { "ButtonLabelList" : ["Variceal Bleed"], "ValueList" : ["Variceal Bleed"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisDecompHEOption" : { "ButtonLabelList" : ["Encephalopathy"], "ValueList" : ["Hepatic Encephalopathy"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
 
     // Labs and Inputs
-    "Cirrhosis_Ascites_Modifier" : { "ButtonLabelList" : ["None", "Slight", "Large"], "ValueList" : ["None", "Slight", "Large" ], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : 0, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
-    "Cirrhosis_Encephalopathy_Modifier" : { "ButtonLabelList" : ["None", "Grade 1", "Grade 2"], "ValueList" : ["None", "Grade 1", "Grade 2" ], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : 0, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "Cirrhosis_Ascites_Modifier" : { "ButtonLabelList" : ["No Ascites", "Slight Ascites", "Large Ascites"], "ValueList" : ["None", "Slight", "Large" ], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : 0, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "Cirrhosis_Encephalopathy_Modifier" : { "ButtonLabelList" : ["No Confusion", "Grade 1 Confusion", "Grade 2 Confusion"], "ValueList" : ["None", "Grade 1", "Grade 2" ], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : 0, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+
+
 
     ///////////////////
     // Scores
     "CirrhosisMELDOption" : { "ButtonLabelList" : ["MELD"], "ValueList" : ["MELD"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
-    "CirrhosisElastographyOption" : { "ButtonLabelList" : ["Elastography"], "ValueList" : ["Abdominal Ultrasound with Elastography for possible Cirrhosis"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
-    "CirrhosisBiopsyOption" : { "ButtonLabelList" : ["Biopsy"], "ValueList" : ["Liver Biopsy to confirm Cirrhosis"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisElastographyOption" : { "ButtonLabelList" : ["Elastography"], "ValueList" : ["Abdominal Ultrasound with Elastography"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisBiopsyOption" : { "ButtonLabelList" : ["Biopsy"], "ValueList" : ["Liver Biopsy"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
 
 
     ///////////////////
@@ -520,7 +535,8 @@ var g_AllOptionsDeclaration = {
     // Varices
     "CirrhosisEGDResultOption" : { "ButtonLabelList" : ["Latest EGD"], "ValueList" : ["Latest endoscopy on xxxxx"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
     "CirrhosisGIBleedOption" : { "ButtonLabelList" : ["Bleed"], "ValueList" : ["Manage as discussed under GI bleed"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
-    "CirrhosisPropranololOption" : { "ButtonLabelList" : ["Propranolol", "Nadolol", "Hold"], "ValueList" : ["Propranolol 20mg PO BID", "Nadolol 20mg PO once daily", "Hold non-selective beta blockers due to active bleed"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisCarvedilolOption": { "ButtonLabelList" : ["Coreg 3.125", "Coreg 6.25", "Coreg 12.5", "Coreg 25", "Hold"], "ValueList" : ["Carvedilol 3.125mg PO BID", "Carvedilol 6.25mg PO BID", "Carvedilol 12.5mg PO BID", "Carvedilol 25mg PO BID", "Hold non-selective beta blockers due to active bleed"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "CirrhosisPlan"},
+    "CirrhosisPropranololOption" : { "ButtonLabelList" : ["D/C Propranolol", "D/C Nadolol", "Hold"], "ValueList" : ["D/C home Propranolol", "D/C home Nadolol", "Hold non-selective beta blockers due to active bleed"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "CirrhosisPlan"},
     "CirrhosisCeftriaxoneOption" : { "ButtonLabelList" : ["Ceftriaxone"], "ValueList" : ["Ceftriaxone 1g IV daily x7 days"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "CirrhosisPlan"},
 
     ///////////////////
@@ -1435,6 +1451,7 @@ var g_AllOptionsDeclaration = {
     "AnemiaCheckFreeHgbOption" : { "ButtonLabelList" : ["Free Hgb"], "ValueList" : ["Free Hgb"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckFibrinogenOption" : { "ButtonLabelList" : ["Fibrinogen"], "ValueList" : ["Fibrinogen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckReticulocyteCountOption" : { "ButtonLabelList" : ["Reticulocyte count"], "ValueList" : ["Reticulocyte count"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
+    "AnemiaCheckDDimerCountOption" : { "ButtonLabelList" : ["DDimer"], "ValueList" : ["DDimer (for DIC)"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     // Iron Workup
     "AnemiaCheckTransferrinOption" : { "ButtonLabelList" : ["Transferrin"], "ValueList" : ["Transferrin"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
     "AnemiaCheckIronBindingSaturationOption" : { "ButtonLabelList" : ["Iron sat"], "ValueList" : ["Iron binding saturation"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "AnemiaPlan"},
