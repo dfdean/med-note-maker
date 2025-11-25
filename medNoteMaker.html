@@ -199,7 +199,6 @@
     <td><input type="button" id="HepCPlan" value="Hep C" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="HypothyroidPlan" value="Hypothyroid" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="GERDPlan" value="GERD" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
-    <td><input type="button" id="DysphagiaPlan" value="Dysphagia" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="GISymptomsPlan" value="GI Symptoms" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <!-- <td><input type="button" id="ParathyroidectomyPlan" value="Parathyroidectomy" class="planOffStyle" onclick="OnPlanButton(this)" ></td> -->
 </tr>
@@ -269,7 +268,7 @@
 <h2>Medical Note Maker</h2>
 <br>Written by Dr. Dawson Dean
 <br>For comments and questions, email dfdean3@gmail.com
-<br>Code is available at <a href="https://github.com/dfdean/MedNoteMaker" target="_blank">https://github.com/dfdean/MedNoteMaker</a>
+<br>Code is available at <a href="https://github.com/dfdean/med-note-maker" target="_blank">https://github.com/dfdean/med-note-maker</a>
 <br><br><br>
 <input type="button" id="CloseHelpButtonID" value="Close" class="OptionBtnStyle" onclick="MedNote_OnCloseChildWindow(this)" >
 <div id="HelpStatusTextID">
@@ -7076,13 +7075,18 @@ Pre-operative colonization with Staphylococcus aureus increases SSI risk. Screen
         <td><input type="button" value="Reload" class="CPGroupOnStyle" onclick="MedNote_CPReload(this, 'EncephalopathyPlan')" ></td>
         <td><input type="button" value="Hide" class="CPGroupOnStyle" onclick="MedNote_CPToggleControls(this)" ></td>
         </tr>
+
+
+    <tr>
+        <td><input type="button" id="AMS_Speech_Eval_Result_OPTION" value="Cleared" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
     </table>
 </div> <!-- xID="CPHeader" -->
 
 <div xID="CPBody">
-    <!-- Main Commands -->
+    <!-- Workup Commands -->
+    <b><u>Workup</u></b>
     <table border="0" style="border-spacing:0.1em; padding:10px;">
-
     <tr>
         <td><input type="button" value="CNS" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
         <td><input type="button" id="AMS_CHECK_HEAD_CT_OPTION" value="Head CT" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
@@ -7141,29 +7145,76 @@ Pre-operative colonization with Staphylococcus aureus increases SSI risk. Screen
         <td><input type="button" id="AMS_CHECK_Amitriptylene_OPTION" value="Amitriptylene" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
+    </table>
+
+
+
+
+    <!-- Treat Commands -->
+    <b><u>Treat</u></b>
+    <br>
+    <table border="0" style="border-spacing:0.1em; padding:10px;">
+
+    <tr>
+        <td><input type="button" value="Treat" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AMS_TreatInfection_OPTION" value="Treat Infection" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Environment" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AMS_Q12Vitals_Option" value="Q12 Vitals" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_SlowLabs_Option" value="Slow Labs" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_DC_Tele_Option" value="d/c Tele" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_DC_Foley_Option" value="d/c Foley" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_OutOfBed_Option" value="Up In Chair" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
     <tr>
         <td><input type="button" value="Hold" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
         <td><input type="button" id="AMS_HOLD_OPIOIDS_OPTION" value="Opioids" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AMS_HOLD_BENZOS_OPTION" value="Benzos" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AMS_HOLD_MUSCLE_RELAXANTS_OPTION" value="Muscle Relaxers" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AMS_HOLD_ANTIHISTAMINES_OPTION" value="Hydroxyzine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AMS_HOLD_PROMETHAZINE_OPTION" value="Promethazine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="AMS_HOLD_GABAPENTIN_OPTION" value="Gabapentin" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-    </tr>
-
-    <tr>
-        <td><input type="button" value="Treat" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="AMS_CHECK_SWALLOW_STUDY_OPTION" value="Swallow" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AMS_Treat_Thiamine_OPTION" value="Thiamine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AMS_Treat_Memantine_OPTION" value="Memantine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AMS_Treat_Donepezil_OPTION" value="Donepezil" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AMS_Treat_Lorazepam_OPTION" value="Lorazepam" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="AMS_Treat_Haloperidol_OPTION" value="Haloperidol" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_HOLD_MUSCLE_RELAXANTS_OPTION" value="Muscle Relaxers" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     <tr>
         <td><input type="button" value="Sleep" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="AMS_SLEEP_MED_OPTION" value="Trazodone" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Melatonin_OPTION" value="Melatonin" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Trazodone_MED_OPTION" value="Trazodone" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Quetiapine_MED_OPTION" value="Quetiapine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Dysphagia" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AMS_NPO_OPTION" value="NPO" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_IVFluids_OPTION" value="IV Fluids" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_CHECK_SWALLOW_STUDY_OPTION" value="Swallow" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Mod_Barium_OPTION" value="Mod Barium" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Place_DHT_OPTION" value="Dobhoff" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Treat" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AMS_Treat_Thiamine_OPTION" value="Thiamine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Treat_Memantine_OPTION" value="Memantine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Treat_Donepezil_OPTION" value="Donepezil" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Consults" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AMS_ChaplainOption" value="Chaplain" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_MusicTherapyOption" value="Music therapy" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Agitation" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="AMS_SitterOption" value="Sitter" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Treat_Lorazepam_OPTION" value="Lorazepam" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_Treat_Haloperidol_OPTION" value="Haloperidol" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_RestraintsOption" value="Restraints" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="AMS_72HrHoldOption" value="72hr Hold" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     </table>
@@ -7177,52 +7228,6 @@ Pre-operative colonization with Staphylococcus aureus increases SSI risk. Screen
 
 
 
-
-
-
-
-<!-------------------------------------------------------->
-<!-- DYSPHAGIA_CONTROL_PANEL -->
-<!-------------------------------------------------------->
-<div id="DYSPHAGIA_CONTROL_PANEL">
-
-<div xID="CPHeader">
-    <table border="0" style="border-spacing:0.1em;">
-        <tr>
-        <td><b><u>Dysphagia</u></b></td>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        <td><input type="button" value="Hide" class="CPGroupOnStyle" onclick="MedNote_CPToggleControls(this)" ></td>
-        </tr>
-    </table>
-</div> <!-- xID="CPHeader" -->
-
-<div xID="CPBody">
-    <!-- Main Commands -->
-    <table border="0" style="border-spacing:0.1em; padding:10px;">
-
-    <tr>
-        <td><input type="button" value="Status" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="DYSPHAGIA_Speech_Eval_Result_OPTION" value="Cleared" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-    </tr>
-
-    <tr>
-        <td><input type="button" value="Test" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="DYSPHAGIA_Mod_Barium_OPTION" value="Mod Barium" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-    </tr>
-
-    <tr>
-        <td><input type="button" value="Tube Feeds" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="DYSPHAGIA_Place_DHT_OPTION" value="Dobhoff" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="DYSPHAGIA_Tube_Feeds_OPTION" value="Tube Feeds" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-    </tr>
-    </table>
-
-    <!-- HINT TEXT -->
-    <div xID="CPHintText" style="display:None;">
-    </div> <!-- xID="CPHintText" -->
-
-</div> <!-- xID="CPBody" -->
-</div> <!-- DYSPHAGIA_CONTROL_PANEL -->
 
 
 

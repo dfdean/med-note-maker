@@ -175,7 +175,6 @@ StartMedNoteMaker() {
     InitPlanState("CKDPlan", PrintCKDPlan);
     InitPlanState("NephroticPlan", WriteNephroticPlan);
     InitPlanState("IVContrastPlan", WriteIVContrastPlan);
-    InitPlanState("DysphagiaPlan", WriteDysphagiaPlan);
     InitPlanState("MBDPlan", WriteMBDPlan);
     InitPlanState("HTNPlan", WriteHTNPlan);    
     InitPlanState("AcidBasePlan", WriteAcidBasePlan);

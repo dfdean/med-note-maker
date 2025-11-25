@@ -51,7 +51,6 @@ var g_AllPlansDeclaration = {
     "PEDVTPlan" :     { "isSelected" : 0, "planSelectStatusHTMLElementID" : "PEDVTPlan", "planSelectStatusHTMLElement" : null, "PrintFunction" : null, "PrintSingleLine" : 0, "controlPanelID" : "PEDVT_CONTROL_PANEL", "activeControlPanel" : null, "planTableRowElement" : null, "planTextHTMLElement" : null},
     "CovidPlan" :     { "isSelected" : 0, "planSelectStatusHTMLElementID" : "CovidPlan", "planSelectStatusHTMLElement" : null, "PrintFunction" : null, "PrintSingleLine" : 0, "controlPanelID" : "CovidControlPanel", "activeControlPanel" : null, "planTableRowElement" : null, "planTextHTMLElement" : null},
     "EncephalopathyPlan" :     { "isSelected" : 0, "planSelectStatusHTMLElementID" : "EncephalopathyPlan", "planSelectStatusHTMLElement" : null, "PrintFunction" : null, "PrintSingleLine" : 0, "controlPanelID" : "ENCEPHALOPATHY_CONTROL_PANEL", "activeControlPanel" : null, "planTableRowElement" : null, "planTextHTMLElement" : null},
-    "DysphagiaPlan" :     { "isSelected" : 0, "planSelectStatusHTMLElementID" : "DysphagiaPlan", "planSelectStatusHTMLElement" : null, "PrintFunction" : null, "PrintSingleLine" : 0, "controlPanelID" : "DYSPHAGIA_CONTROL_PANEL", "activeControlPanel" : null, "planTableRowElement" : null, "planTextHTMLElement" : null},
     "SyncopePlan" :     { "isSelected" : 0, "planSelectStatusHTMLElementID" : "SyncopePlan", "planSelectStatusHTMLElement" : null, "PrintFunction" : null, "PrintSingleLine" : 0, "controlPanelID" : "SYNCOPE_CONTROL_PANEL", "activeControlPanel" : null, "planTableRowElement" : null, "planTextHTMLElement" : null},
     "OncologyPlan" :     { "isSelected" : 0, "planSelectStatusHTMLElementID" : "OncologyPlan", "planSelectStatusHTMLElement" : null, "PrintFunction" : null, "PrintSingleLine" : 0, "controlPanelID" : "ONCOLOGY_CONTROL_PANEL", "activeControlPanel" : null, "planTableRowElement" : null, "planTextHTMLElement" : null},
     "HepatitisPlan" :     { "isSelected" : 0, "planSelectStatusHTMLElementID" : "HepatitisPlan", "planSelectStatusHTMLElement" : null, "PrintFunction" : null, "PrintSingleLine" : 0, "controlPanelID" : "HEPATITIS_CONTROL_PANEL", "activeControlPanel" : null, "planTableRowElement" : null, "planTextHTMLElement" : null},
@@ -3015,9 +3014,17 @@ var g_AllOptionsDeclaration = {
     "PREOP_DECOLONIZE_MRSA_OPTION" : { "ButtonLabelList" : ["Decolonize MRSA"], "ValueList" : ["MRSA decolonization with intra-nasal mupirocin"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "PreopPlan"},
 
 
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     // EncephalopathyPlan
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     "AMS_ACUTE_MODIFIER" : { "ButtonLabelList" : ["AcuteOnChronic", "Acute", "Chronic"], "ValueList" : ["Acute on Chronic ", "Acute ", "Chronic "], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
 
+    "AMS_Speech_Eval_Result_OPTION" : { "ButtonLabelList" : ["Regular", "Honey", "Nectar", "MechSoft", "NPO"], "ValueList" : ["Speech therapy recommends: Regular diet with thin liquids", "Speech therapy recommends: Honey-thick", "Speech therapy recommends: Nectar-thick", "Speech therapy recommends: Mechanical-soft diet", "Speech therapy recommends: NPO"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+
+    // Workup
     "AMS_CHECK_HEAD_CT_OPTION" : { "ButtonLabelList" : ["Head CT"], "ValueList" : ["Head CT"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_EEG_OPTION" : { "ButtonLabelList" : ["EEG"], "ValueList" : ["EEG"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_Prolactin_OPTION" : { "ButtonLabelList" : ["Prolactin"], "ValueList" : ["Prolactin (rule out seizures)"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
@@ -3032,19 +3039,16 @@ var g_AllOptionsDeclaration = {
     "AMS_CHECK_VMG_OPTION" : { "ButtonLabelList" : ["VBG"], "ValueList" : ["VBG"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_CO_OPTION" : { "ButtonLabelList" : ["CO"], "ValueList" : ["Carboxyhemoglobin level"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
 
-
     "AMS_CHECK_Blood_CX_OPTION" : { "ButtonLabelList" : ["Blood Cx"], "ValueList" : ["blood cultures"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_Urine_CX_OPTION" : { "ButtonLabelList" : ["Urine Cx"], "ValueList" : ["Urinalysis and Urine Culture"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_CXR_OPTION" : { "ButtonLabelList" : ["CXR"], "ValueList" : ["Chest XRay"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_RPR_OPTION" : { "ButtonLabelList" : ["RPR"], "ValueList" : ["Syphilis screen"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
-
 
     "AMS_CHECK_Glucose_OPTION" : { "ButtonLabelList" : ["Glucose"], "ValueList" : ["Glucose"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_A1c_OPTION" : { "ButtonLabelList" : ["A1c"], "ValueList" : ["A1c"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_METABOLIC_CHECK_B12" : { "ButtonLabelList" : ["B12"], "ValueList" : ["B12 level"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_METABOLIC_CHECK_Thiamine" : { "ButtonLabelList" : ["Thiamine"], "ValueList" : ["Thiamine level"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_CPK_OPTION" : { "ButtonLabelList" : ["CPK"], "ValueList" : ["CPK"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
-
 
     "AMS_CHECK_TSH_OPTION" : { "ButtonLabelList" : ["TSH"], "ValueList" : ["TSH"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
 
@@ -3053,6 +3057,20 @@ var g_AllOptionsDeclaration = {
     "AMS_CHECK_Digoxin_OPTION" : { "ButtonLabelList" : ["Digoxin"], "ValueList" : ["Digoxin level"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_CHECK_Amitriptylene_OPTION" : { "ButtonLabelList" : ["Amitriptylene"], "ValueList" : ["Amitriptylene level"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
 
+
+
+
+    ///////////////////
+    // Environment
+    "AMS_Q12Vitals_Option" : { "ButtonLabelList" : ["Q12 Vitals"], "ValueList" : ["Q12 Vitals"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_SlowLabs_Option" : { "ButtonLabelList" : ["Slow Labs"], "ValueList" : ["slow Labs"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_DC_Tele_Option" : { "ButtonLabelList" : ["d/c Tele"], "ValueList" : ["d/c Tele"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_DC_Foley_Option" : { "ButtonLabelList" : ["d/c Foley"], "ValueList" : ["d/c Foley"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_OutOfBed_Option" : { "ButtonLabelList" : ["Up In Chair"], "ValueList" : ["Up in chair daily"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    ///////////////////
+    // Treat
+    "AMS_TreatInfection_OPTION" : { "ButtonLabelList" : ["Treat Infection"], "ValueList" : ["Treat Infection"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    ///////////////////
     // Hold sedating meds
     "AMS_HOLD_OPIOIDS_OPTION" : { "ButtonLabelList" : ["Opioids"], "ValueList" : ["Opioids"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_HOLD_BENZOS_OPTION" : { "ButtonLabelList" : ["Benzos"], "ValueList" : ["Benzodiazepines"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
@@ -3060,26 +3078,38 @@ var g_AllOptionsDeclaration = {
     "AMS_HOLD_ANTIHISTAMINES_OPTION" : { "ButtonLabelList" : ["Hydroxyzine"], "ValueList" : ["Hydroxyzine"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_HOLD_PROMETHAZINE_OPTION" : { "ButtonLabelList" : ["Promethazine"], "ValueList" : ["Promethazine"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_HOLD_GABAPENTIN_OPTION" : { "ButtonLabelList" : ["Gabapentin"], "ValueList" : ["Gabapentin"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
-
+    ///////////////////
+    // Sleep
+    "AMS_Melatonin_OPTION" : { "ButtonLabelList" : ["Melatonin"], "ValueList" : ["Melatonin 9mg PO QHS"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_Trazodone_MED_OPTION" : { "ButtonLabelList" : ["Trazodone", "Trazodone100"], "ValueList" : ["Trazodone 50mg PO QHS", "Trazodone 100mg PO QHS"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_Quetiapine_MED_OPTION" : { "ButtonLabelList" : ["Quetiapine"], "ValueList" : ["Quetiapine 50mg PO QHS"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    ///////////////////
+    // Dysphagia
     "AMS_CHECK_SWALLOW_STUDY_OPTION" : { "ButtonLabelList" : ["Swallow"], "ValueList" : ["Consult Speech therapy for Swallow eval"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_Mod_Barium_OPTION" : { "ButtonLabelList" : ["Mod Barium"], "ValueList" : ["Mod Barium swallow"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_NPO_OPTION" : { "ButtonLabelList" : ["NPO"], "ValueList" : ["NPO"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_IVFluids_OPTION" : { "ButtonLabelList" : ["IV Fluids"], "ValueList" : ["IV D5LR while NPO"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_Place_DHT_OPTION" : { "ButtonLabelList" : ["Dobhoff"], "ValueList" : ["Tube feeds via Dobhoff"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+
+    // Treat
     "AMS_Treat_Thiamine_OPTION" : { "ButtonLabelList" : ["Thiamine"], "ValueList" : ["Thiamine 100mg once now stat and daily"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_Treat_Memantine_OPTION" : { "ButtonLabelList" : ["Memantine"], "ValueList" : ["Memantine 5mg daily"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_Treat_Donepezil_OPTION" : { "ButtonLabelList" : ["Donepezil"], "ValueList" : ["Donepezil 5mg QHS"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+
+    ///////////////////
+    // Consults
+    "AMS_ChaplainOption" : { "ButtonLabelList" : ["Chaplain"], "ValueList" : ["Chaplain"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_MusicTherapyOption" : { "ButtonLabelList" : ["Music therapy"], "ValueList" : ["Music therapy"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+
+    ///////////////////
+    // Agitation
+    "AMS_SitterOption" : { "ButtonLabelList" : ["Sitter", "TeleSitter"], "ValueList" : ["Sitter", "TeleSitter"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_RestraintsOption" : { "ButtonLabelList" : ["Restraints"], "ValueList" : ["Restraints"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
+    "AMS_72HrHoldOption" : { "ButtonLabelList" : ["72hr Hold"], "ValueList" : ["72hr Hold"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_Treat_Lorazepam_OPTION" : { "ButtonLabelList" : ["Lorazepam"], "ValueList" : ["Lorazepam 1mg IV PRN agitation"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
     "AMS_Treat_Haloperidol_OPTION" : { "ButtonLabelList" : ["Haloperidol"], "ValueList" : ["Haloperidol 4mg IV PRN agitation"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
 
 
-    "AMS_SLEEP_MED_OPTION" : { "ButtonLabelList" : ["Trazodone"], "ValueList" : ["Trazodone 50mg PO QHS"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EncephalopathyPlan"},
-
-
-
-
-
-    // DysphagiaPlan
-    "DYSPHAGIA_Speech_Eval_Result_OPTION" : { "ButtonLabelList" : ["Regular", "Honey", "Nectar", "MechSoft", "NPO"], "ValueList" : ["Speech therapy recommends: Regular diet with thin liquids", "Speech therapy recommends: Honey-thick", "Speech therapy recommends: Nectar-thick", "Speech therapy recommends: Mechanical-soft diet", "Speech therapy recommends: NPO"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "DysphagiaPlan"},
-    "DYSPHAGIA_Mod_Barium_OPTION" : { "ButtonLabelList" : ["Mod Barium"], "ValueList" : ["Mod Barium swallow"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "DysphagiaPlan"},
-    "DYSPHAGIA_Place_DHT_OPTION" : { "ButtonLabelList" : ["Dobhoff"], "ValueList" : ["Continue Dobhoff tube"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "DysphagiaPlan"},
-    "DYSPHAGIA_Tube_Feeds_OPTION" : { "ButtonLabelList" : ["Tube Feeds"], "ValueList" : ["Continue tube feeds"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "DysphagiaPlan"},
 
 
     ///////////////////////////////////////////////////////////

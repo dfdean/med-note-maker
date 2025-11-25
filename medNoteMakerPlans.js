@@ -932,7 +932,7 @@ WriteSepsisPlan() {
     var currentSOFAOptionList = [ "SepsisSOFAOption_Current_PaO2FiO2", "SepsisSOFAOption_Current_Plts", "SepsisSOFAOption_Current_Bili", "SepsisSOFAOption_Current_MAP", "SepsisSOFAOption_Current_GCS", "SepsisSOFAOption_Current_Cr" ];
     var baselineSOFAOptionList = [ "SepsisSOFAOption_Baseline_PaO2FiO2", "SepsisSOFAOption_Baseline_Plts", "SepsisSOFAOption_Baseline_Bili", "SepsisSOFAOption_Baseline_MAP", "SepsisSOFAOption_Baseline_GCS", "SepsisSOFAOption_Baseline_Cr" ];
     var SOFAValueNameList = [ "PaO2/FiO2", "Plts", "TBili", "MAP", "GCS", "Creatinine" ];
-    MedNote_ComputeSOFAScore(activeControlPanel, currentSOFAOptionList, baselineSOFAOptionList, SOFAValueNameList, "The patient meets SIRS criteris (", false, "", optionNameList, ")")
+    MedNote_ComputeSOFAScore(activeControlPanel, currentSOFAOptionList, baselineSOFAOptionList, SOFAValueNameList, "The patient meets SIRS criteris (", false, "", optionNameList, ")");
 
 
     if (MedNote_GetCPOptionBool("SepsisShowNEWS")) {
@@ -964,7 +964,7 @@ WriteSepsisPlan() {
     //////////////////////////
     // Describe the criteria for this diagnosis.
     var optionNameList = [ "SepsisSIRSHROption", "SepsisSIRSTempOption", "SepsisSIRSRROption", "SepsisSIRSWBCOption" ];
-    WriteListOfSelectedValues(activeControlPanel, "The patient meets SIRS criteris (", false, "", optionNameList, ")")
+    WriteListOfSelectedValues(activeControlPanel, "The patient meets SIRS criteris (", false, "", optionNameList, ")");
 
     //////////////////////////
     // Describe the possible sources.
@@ -1070,7 +1070,7 @@ WriteOSAPlan() {
     //////////////////////////
     // Describe the criteria for this diagnosis.
     var optionNameList = [ "OSANeckOver16inOption", "OSASnoringOption", "OSATiredOption", "OSAObservedApneaOption", "OSAHypertensionOption", "OSABMIOver35Option", "OSAAgeOver50yoOption", "OSAMaleOption" ];
-    WriteListOfSelectedValues(activeControlPanel, "STOP-BANG score=", true, " (", optionNameList, ")")
+    WriteListOfSelectedValues(activeControlPanel, "STOP-BANG score=", true, " (", optionNameList, ")");
     WriteCommentIfSelected(activeControlPanel, "OSAExplainSTOPBANGOption");
     //WriteComment("The patient also complains of morning headaches, and has sequelae possibly attributable to untreated OSA: A-Fib, HFpEF, HTN");
     WriteCommentIfSelected(activeControlPanel, "OSAPastDiagnosisOption");
@@ -1179,7 +1179,7 @@ WriteIllicitDrugsPlan() {
                             "IllicitsWithdrawalOption", "IllicitsToleranceOption", "IllicitsLargerAmountsOption", 
                             "IllicitsAttemptsToQuitOption", "IllicitsTimeSpentOption", "IllicitsPsychPhysicalProblemsOption", 
                             "IllicitsGaveUpActivitiesOption", "IllicitsCravingOption" ];
-    WriteListOfSelectedValues(activeControlPanel, "The patient meets the following criteria for substance abuse: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The patient meets the following criteria for substance abuse: ", false, "", optionNameList, "");
 
     // History
     //WriteCommentIfSelected(activeControlPanel, "IllicitsShowUDSOption");
@@ -1474,7 +1474,7 @@ PrintCKDPlan() {
         } //else if (g_GFR_CockroftGault > 0) {
             //gfrForESRDRisk = g_GFR_CockroftGault;
         //}
-        LogEvent("gfrForESRDRisk = " + gfrForESRDRisk)
+        LogEvent("gfrForESRDRisk = " + gfrForESRDRisk);
 
         // This writes the results in global variables g_2YearESRDRisk and g_5YearESRDRisk
         // This forces it to only use the 4-variable equation
@@ -1517,13 +1517,13 @@ PrintCKDPlan() {
     ///////////////////////////////
     // SGLT2 Comments
     optionNameList = [ "CKDSGLT2IndicationsDM2Option", "CKDSGLT2IndicationsCKDOption", 
-                            "CKDSGLT2IndicationsHFrEFOption", "CKDSGLT2IndicationsUACROver200Option" ]
+                            "CKDSGLT2IndicationsHFrEFOption", "CKDSGLT2IndicationsUACROver200Option" ];
     WriteListOfSelectedValues(activeControlPanel, "Indications for starting an SGLT2 inhibitor include: ", false, "", optionNameList, "");
 
     optionNameList = [ "CKDSGLT2ContraindicationsGFRBelow30Option", "CKDSGLT2ContraindicationsDM1Option",
                             "CKDSGLT2ContraindicationsTransplantOption", "CKDSGLT2ContraindicationsDKAOption",
                             "CKDSGLT2ContraindicationsImunosuppressedOption", "CKDSGLT2ContraindicationsPKDOption",
-                            "CKDSGLT2ContraindicationsSLEOption", "CKDSGLT2ContraindicationsANCAOption" ]
+                            "CKDSGLT2ContraindicationsSLEOption", "CKDSGLT2ContraindicationsANCAOption" ];
     WriteListOfSelectedValues(activeControlPanel, "Do not start an SGLT2 inhibitor due to contraindications: ", false, "", optionNameList, "");
 
 
@@ -1584,6 +1584,7 @@ PrintCKDPlan() {
 function 
 WriteCADPlan() {
     var activeControlPanel = null;
+    var subPlanActionList = [];
 
     var planStr = "Chronic Coronary Disease";
     if (PrintSingleLinePlanAtEnd('CADPlan', planStr, "Continue home medications: ")) {
@@ -1741,7 +1742,7 @@ WriteCOPDPlan() {
             }
         }
         if (reasonStr != "") {
-            reasonStr = reasonStr.slice(0, -2)
+            reasonStr = reasonStr.slice(0, -2);
             commentStr = commentStr + " (" + reasonStr + ")";
         }
         if (commentStr != "") {
@@ -1767,7 +1768,7 @@ WriteCOPDPlan() {
     if ((optionStr != null) && (optionStr != "")) {
         var inputFEV1 = GetFloatInputForControlPanel(activeControlPanel, 'InputFEV1_CP');
         var inputFVC = GetFloatInputForControlPanel(activeControlPanel, 'InputFVC_CP');
-        fev1FVCRatio = inputFEV1 / inputFVC
+        fev1FVCRatio = inputFEV1 / inputFVC;
         fev1FVCRatio = Math.round((fev1FVCRatio + 0.00001) * 100) / 100;
         if (stagingStr != "") {
             stagingStr += ", ";
@@ -1872,19 +1873,19 @@ WriteHemodialysisPlan() {
 
     // Outpatient Unit
     var optionNameList = [ "ESRDScheduleOption", "ESRDHomeUnitOption", "ESRDNephrologistOption"];
-    WriteListOfSelectedValues(activeControlPanel, "Outpatient dialysis ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Outpatient dialysis ", false, "", optionNameList, "");
 
     optionNameList = [ "ESRDAccessOption", "ESRDDryWeightOption"];
-    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "");
 
     optionNameList = [ "ESRDOnHDSinceOption", "ESRDCauseofESRDOption"];
-    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "");
 
     WriteCommentIfSelected(activeControlPanel, "ESRDMakesUrineOption");
 
     WriteCommentIfSelected(activeControlPanel, "ESRDCAPDTypeOption");
     optionNameList = [ "ESRDCAPD15PercentOption", "ESRDCAPD25PercentOption", "ESRDCAPD425PercentOption", "ESRDCAPDIcodextrinOption"];
-    WriteListOfSelectedValues(activeControlPanel, "Peritoneal Dialysate: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Peritoneal Dialysate: ", false, "", optionNameList, "");
     WriteCommentIfSelected(activeControlPanel, "ESRDPeritonitisOption");
     WriteCommentIfSelected(activeControlPanel, "ESRDLastStoolOption");
 
@@ -2512,8 +2513,8 @@ WriteNephroticPlan() {
     var urineAlbumin = GetIntInputForControlPanel(activeControlPanel, "InputUrineAlbuminCP");
     var urineCreatinine = GetIntInputForControlPanel(activeControlPanel, "InputUrineCreatinineCP");
     var serumAlbumin = GetIntInputForControlPanel(activeControlPanel, "SerumAlbuminCP");
-    var urineProtCrRatio = -1
-    var urineAlbCrRatio = -1
+    var urineProtCrRatio = -1;
+    var urineAlbCrRatio = -1;
 
     if ((urineProtein > 0) && (urineCreatinine > 0)) {
         urineProtCrRatio = urineProtein / urineCreatinine;
@@ -2622,7 +2623,7 @@ WriteEtOHPlan() {
     }
 
     var optionNameList = [ "EtOHDailyUseOption", "EtOHLastUseOption"];
-    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "");
 
     planStr = MedNote_GetCPOptionValue("EtOHPastWithdrawalsOption");
     if ((planStr != null) && (planStr != "")) {
@@ -2682,7 +2683,7 @@ WriteHypokalemiaPlan() {
     var optionNameList = [ "LowPotassiumShowKOption", "LowPotassiumShowMgOption", "LowPotassiumShowUrClOption"];
     var valueList = [ "", "", ""];
     var valueNameList = [ "INPUT_SERUM_K_CP", "INPUT_SERUM_Mg_CP", "INPUT_URINE_CL_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
     ///////////////////////////////////////////
     // Trans-Tubular Potassium Gradient
@@ -2763,7 +2764,7 @@ WriteHypERkalemiaPlan() {
     var optionNameList = [ "HighPotassiumShowKOption"];
     var valueList = [ "", "", ""];
     var valueNameList = [ "INPUT_SERUM_K_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
     WriteCommentIfSelected(activeControlPanel, "HighPotassiumShowEKGOption");
 
     ///////////////////////////////////////////
@@ -2876,7 +2877,7 @@ PrintHyperNatremiaPlan() {
     var optionNameList = [ "HighNaShowNaOption", "HighNaShowUrineOsmOption", "HighNaShowUrineNaOption"];
     var valueList = [ "", "", ""];
     var valueNameList = [ "HIGH_NA_INPUT_SERUM_NA_CP", "InputUrineOsm_CP", "InputUrineNa_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
     planStr = MedNote_GetCPOptionValue("HighNaFreeWaterDeficitOption");
     if ((planStr != null) && (planStr != "")) {
@@ -2925,7 +2926,7 @@ WriteHypomagnesemiaPlan() {
     var optionNameList = [ "LowMgShowMgOption"];
     var valueList = [ ""];
     var valueNameList = [ "ControlPanel_Mg_Input"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
     WriteActionIfSelected(activeControlPanel, "LowMgCheckUrineOption");
     WriteActionIfSelected(activeControlPanel, "LowMgRepleteOption");
@@ -2967,7 +2968,7 @@ WriteHypoPhosPlan() {
     var optionNameList = [ "LowPhosShowPhosOption", "LowPhosShowPTHOption", "LowPhosShowCalciumOption"];
     var valueList = [ "", "", "", ""];
     var valueNameList = [ "INPUT_SERUM_Phos_CP", "INPUT_SERUM_PTH_CP", "INPUT_SERUM_Ca_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
     ///////////////////////////////////////////
     // Fractional Excretion Phos
@@ -3039,7 +3040,7 @@ WriteHypoCalcemiaPlan() {
     var optionNameList = [ "LowCalciumShowCaOption", "LowCalciumShowiCalOption", "LowCalciumShowVitDOption"];
     var valueList = [ "", "", ""];
     var valueNameList = [ "INPUT_SERUM_Ca_CP", "INPUT_SERUM_iCal_CP", "INPUT_SERUM_VitD_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
 
 
@@ -3108,7 +3109,7 @@ WriteHypERCalcemiaPlan() {
     var optionNameList = [ "HighCalciumShowCaOption", "HighCalciumShowiCalOption", "HighCalciumShowVitDOption", "HighCalciumShow125VitDOption"];
     var valueList = [ "", "", "", ""];
     var valueNameList = [ "INPUT_SERUM_Ca_CP", "INPUT_SERUM_iCal_CP", "INPUT_SERUM_VitD_CP", "INPUT_SERUM_125VitD_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
     ///////////////////////////////////////////
     // Fractional Excretion Ca
@@ -3276,11 +3277,11 @@ WriteOncologyPlan() {
     var actionNameList = [ "ONCOLOGY_ONDANSETRON_PRN_OPTION", "ONCOLOGY_ONDANSETRON_SCHEDULED_OPTION", "ONCOLOGY_Prochlorperazine_OPTION", "ONCOLOGY_Phenergan_OPTION"];
     WriteListOfSubActions("Antiemetics", actionNameList);
 
-    var actionNameList = [ "ONCOLOGY_MORPHINE_ER_OPTION", "ONCOLOGY_OXYCODONE_LR_OPTION", "ONCOLOGY_FENTANYL_OPTION", "ONCOLOGY_Prednisone_OPTION", "ONCOLOGY_MORPHINE_IR_OPTION",
+    actionNameList = [ "ONCOLOGY_MORPHINE_ER_OPTION", "ONCOLOGY_OXYCODONE_LR_OPTION", "ONCOLOGY_FENTANYL_OPTION", "ONCOLOGY_Prednisone_OPTION", "ONCOLOGY_MORPHINE_IR_OPTION",
                         "ONCOLOGY_Oxycodone_OPTION", "ONCOLOGY_Dilaudid_PO_OPTION", "ONCOLOGY_Dilaudid_IV_OPTION", "ONCOLOGY_PCA_OPTION"];
     WriteListOfSubActions("Pain Control", actionNameList);
 
-    var actionNameList = [ "ONCOLOGY_DOCSENNA_OPTION", "ONCOLOGY_MIRALAX_OPTION", "ONCOLOGY_MgCitrate_OPTION", "ONCOLOGY_Lactulose_OPTION"];
+    actionNameList = [ "ONCOLOGY_DOCSENNA_OPTION", "ONCOLOGY_MIRALAX_OPTION", "ONCOLOGY_MgCitrate_OPTION", "ONCOLOGY_Lactulose_OPTION"];
     WriteListOfSubActions("Bowel Regimen", actionNameList);
 
     WriteActionIfSelected(activeControlPanel, "ONCOLOGY_Acyclovir_OPTION");
@@ -3341,29 +3342,29 @@ WritePalliativePlan() {
     WriteListOfSubActions("Pain Control", actionNameList);
 
     // Mucolytics
-    var actionNameList = [ "PALLIATIVE_ALBIPRA_NebsOption", "PALLIATIVE_Glycopyrrolate_OPTION", "PALLIATIVE_GuaifenesinOption",
+    actionNameList = [ "PALLIATIVE_ALBIPRA_NebsOption", "PALLIATIVE_Glycopyrrolate_OPTION", "PALLIATIVE_GuaifenesinOption",
                         "PALLIATIVE_HTSNebsOption", "PALLIATIVE_NACNebsOption"];
     WriteListOfSubActions("Mucolytics", actionNameList);
 
     // Nausea
-    var actionNameList = [ "PALLIATIVE_ONDANSETRON_PRN_OPTION", "PALLIATIVE_ONDANSETRON_SCHEDULED_OPTION", "PALLIATIVE_Prochlorperazine_OPTION", 
+    actionNameList = [ "PALLIATIVE_ONDANSETRON_PRN_OPTION", "PALLIATIVE_ONDANSETRON_SCHEDULED_OPTION", "PALLIATIVE_Prochlorperazine_OPTION", 
                             "PALLIATIVE_Phenergan_OPTION", "PALLIATIVE_Scopolamine_OPTION"];
     WriteListOfSubActions("Antiemetics", actionNameList);
 
     // Anxiety
-    var actionNameList = [ "PALLIATIVE_Lorazepam_OPTION"];
+    actionNameList = [ "PALLIATIVE_Lorazepam_OPTION"];
     WriteListOfSubActions("Anxiety", actionNameList);
 
     // Bowel
-    var actionNameList = [ "PALLIATIVE_DOCSENNA_OPTION", "PALLIATIVE_MIRALAX_OPTION", "PALLIATIVE_MgCitrate_OPTION", "PALLIATIVE_Lactulose_OPTION"];
+    actionNameList = [ "PALLIATIVE_DOCSENNA_OPTION", "PALLIATIVE_MIRALAX_OPTION", "PALLIATIVE_MgCitrate_OPTION", "PALLIATIVE_Lactulose_OPTION"];
     WriteListOfSubActions("Bowel Regimen", actionNameList);
 
     // Consults
-    var actionNameList = [ "PALLIATIVE_ChaplainOption", "PALLIATIVE_MusicTherapyOption", "PALLIATIVE_NarrativeMedOption"];
+    actionNameList = [ "PALLIATIVE_ChaplainOption", "PALLIATIVE_MusicTherapyOption", "PALLIATIVE_NarrativeMedOption"];
     WriteListOfSubActions("Consults", actionNameList);
 
     // Others
-    var actionNameList = [ "PALLIATIVE_Q12Vitals_Option"];
+    actionNameList = [ "PALLIATIVE_Q12Vitals_Option"];
     WriteListOfSubActions("Misc", actionNameList);
 } // WritePalliativePlan
 
@@ -3695,14 +3696,16 @@ WriteHepatitisCPlan() {
 //
 // [WriteEncephalopathyPlan]
 //
-// Updated: 2022-4-4
-// Updated: 2023-9-19
+// 2022-4-4 - Updated
+// 2023-9-19 - Updated
+// 2025-11-18 - Add environment, consults, restraints, more sleep meds. Merged in Dysphagia plan
 ////////////////////////////////////////////////////////////////////////////////
 function 
 WriteEncephalopathyPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var optionNameList = []
 
     planStr = "Encephalopathy";
     var modifierStr = MedNote_GetCPOptionValue("AMS_ACUTE_MODIFIER");
@@ -3715,8 +3718,10 @@ WriteEncephalopathyPlan() {
         LogEvent("WriteEncephalopathyPlan. activeControlPanel is null");
         return;
     }
+    WriteCommentIfSelected(activeControlPanel, "AMS_Speech_Eval_Result_OPTION");
 
-    var optionNameList = [ "AMS_CHECK_HEAD_CT_OPTION", "AMS_CHECK_Prolactin_OPTION", "AMS_CHECK_EEG_OPTION"];
+
+    optionNameList = [ "AMS_CHECK_HEAD_CT_OPTION", "AMS_CHECK_Prolactin_OPTION", "AMS_CHECK_EEG_OPTION"];
     WriteListOfSelectedActions(activeControlPanel, "Check for CNS causes: ", optionNameList);
 
     optionNameList = [ "AMS_INTOXICATION_CHECK_EtOH_OPTION", "AMS_INTOXICATION_CHECK_UDS_OPTION", 
@@ -3743,18 +3748,38 @@ WriteEncephalopathyPlan() {
                     "AMS_CHECK_Amitriptylene_OPTION"];
     WriteListOfSelectedActions(activeControlPanel, "Check for Medication causes: ", optionNameList);
 
-    optionNameList = [ "AMS_HOLD_OPIOIDS_OPTION", "AMS_HOLD_BENZOS_OPTION", "AMS_HOLD_MUSCLE_RELAXANTS_OPTION", "AMS_HOLD_ANTIHISTAMINES_OPTION", "AMS_HOLD_PROMETHAZINE_OPTION", "AMS_HOLD_GABAPENTIN_OPTION"];
+
+
+    ////////////////////////////
+    // Treat
+    WriteActionIfSelected(activeControlPanel, "AMS_TreatInfection_OPTION");
+
+    optionNameList = [ "AMS_Q12Vitals_Option", "AMS_SlowLabs_Option", "AMS_DC_Tele_Option", "AMS_DC_Foley_Option", "AMS_OutOfBed_Option"];
+    WriteListOfSelectedActions(activeControlPanel, "Environment: ", optionNameList);
+
+    optionNameList = [ "AMS_HOLD_OPIOIDS_OPTION", "AMS_HOLD_BENZOS_OPTION", "AMS_HOLD_MUSCLE_RELAXANTS_OPTION", 
+                    "AMS_HOLD_ANTIHISTAMINES_OPTION", "AMS_HOLD_PROMETHAZINE_OPTION", "AMS_HOLD_GABAPENTIN_OPTION"];
     WriteListOfSelectedActions(activeControlPanel, "Hold home medications: ", optionNameList);
-    
+
+    optionNameList = [ "AMS_Melatonin_OPTION", "AMS_Trazodone_MED_OPTION", "AMS_Quetiapine_MED_OPTION"];
+    WriteListOfSelectedActions(activeControlPanel, "Manage sleep: ", optionNameList);
+
+    WriteActionIfSelected(activeControlPanel, "AMS_NPO_OPTION");
+    WriteActionIfSelected(activeControlPanel, "AMS_IVFluids_OPTION");
     WriteActionIfSelected(activeControlPanel, "AMS_CHECK_SWALLOW_STUDY_OPTION");
+    WriteActionIfSelected(activeControlPanel, "AMS_Mod_Barium_OPTION");
+    WriteActionIfSelected(activeControlPanel, "AMS_Place_DHT_OPTION");
+
     WriteActionIfSelected(activeControlPanel, "AMS_Treat_Thiamine_OPTION");
     WriteActionIfSelected(activeControlPanel, "AMS_Treat_Memantine_OPTION");
     WriteActionIfSelected(activeControlPanel, "AMS_Treat_Donepezil_OPTION");
-    WriteActionIfSelected(activeControlPanel, "AMS_Treat_Lorazepam_OPTION");
-    WriteActionIfSelected(activeControlPanel, "AMS_Treat_Haloperidol_OPTION");
 
-    optionNameList = [ "AMS_SLEEP_MED_OPTION"];
-    WriteListOfSelectedActions(activeControlPanel, "Manage sleep: ", optionNameList);
+    optionNameList = [ "AMS_ChaplainOption", "AMS_MusicTherapyOption"];
+    WriteListOfSelectedActions(activeControlPanel, "Consult: ", optionNameList);
+
+    optionNameList = [ "AMS_SitterOption", "AMS_Treat_Lorazepam_OPTION", "AMS_Treat_Haloperidol_OPTION", 
+                    "AMS_RestraintsOption", "AMS_72HrHoldOption" ];
+    WriteListOfSelectedActions(activeControlPanel, "Manage Agitation: ", optionNameList);
 } // WriteEncephalopathyPlan
 
 
@@ -3793,7 +3818,7 @@ WriteMBDPlan() {
     var optionNameList = [ "MBD_OPTION_SHOW_Ca", "MBD_OPTION_SHOW_Phos", "MBD_OPTION_SHOW_PTH", "MBD_OPTION_SHOW_ICal"];
     var valueList = [ "", "", "", ""];
     var valueNameList = [ "INPUT_SERUM_Ca_CP", "INPUT_SERUM_Phos_CP", "INPUT_SERUM_PTH_CP", "INPUT_SERUM_iCal_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
     optionNameList = [ "MBD_OPTION_CHECK_PTH", "MBD_OPTION_CHECK_VITD"];
     WriteListOfSelectedActions(activeControlPanel, "Check: ", optionNameList);
@@ -3802,34 +3827,6 @@ WriteMBDPlan() {
     WriteActionIfSelected(activeControlPanel, "MBD_OPTION_TEAT_CALCITRIOL");
 } // WriteMBDPlan
 
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-//
-// [WriteDysphagiaPlan]
-//
-////////////////////////////////////////////////////////////////////////////////
-function 
-WriteDysphagiaPlan() {
-    var activeControlPanel = null;
-    var planStr = "";
-
-    planStr = "Dysphagia";
-    activeControlPanel = MedNote_StartNewPlanSection(planStr, "DysphagiaPlan");
-    if (!activeControlPanel) {
-        LogEvent("WriteDysphagiaPlan. activeControlPanel is null");
-        return;
-    }
-
-
-    WriteCommentIfSelected(activeControlPanel, "DYSPHAGIA_Speech_Eval_Result_OPTION");
-    WriteActionIfSelected(activeControlPanel, "DYSPHAGIA_Mod_Barium_OPTION");
-    WriteActionIfSelected(activeControlPanel, "DYSPHAGIA_Place_DHT_OPTION");
-    WriteActionIfSelected(activeControlPanel, "DYSPHAGIA_Tube_Feeds_OPTION");
-} // WriteDysphagiaPlan
 
 
 
@@ -4140,11 +4137,11 @@ WriteGISymptomsPlan() {
     WriteActionIfSelected(activeControlPanel, "GISymptoms_MaintFluidOption");
 
     // Pain Control
-    var actionNameList = [ "GISymptoms_MORPHINE_IR_OPTION", "GISymptoms_Oxycodone_OPTION", "GISymptoms_Dilaudid_PO_OPTION", "GISymptoms_Dilaudid_IV_OPTION", "GISymptoms_PCA_OPTION"];
+    actionNameList = [ "GISymptoms_MORPHINE_IR_OPTION", "GISymptoms_Oxycodone_OPTION", "GISymptoms_Dilaudid_PO_OPTION", "GISymptoms_Dilaudid_IV_OPTION", "GISymptoms_PCA_OPTION"];
     WriteListOfSubActions("Analgesics", actionNameList);
 
     // Nausea
-    var actionNameList = [ "GISymptoms_ONDANSETRON_PRN_OPTION", "GISymptoms_ONDANSETRON_SCHEDULED_OPTION", "GISymptoms_Prochlorperazine_OPTION", "GISymptoms_Phenergan_OPTION"];
+    actionNameList = [ "GISymptoms_ONDANSETRON_PRN_OPTION", "GISymptoms_ONDANSETRON_SCHEDULED_OPTION", "GISymptoms_Prochlorperazine_OPTION", "GISymptoms_Phenergan_OPTION"];
     WriteListOfSubActions("Antiemetics", actionNameList);
     WriteActionIfSelected(activeControlPanel, "GISymptoms_Cyproheptadine_OPTION");
     WriteActionIfSelected(activeControlPanel, "GISymptoms_Amitriptylene_OPTION");
@@ -4943,7 +4940,7 @@ WriteObesityPlan() {
     var optionNameList = [ "ObesityShowBMIOption"];
     var valueList = [ ""];
     var valueNameList = [ "Obesity_BMI_INPUT_CP"];
-    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList)
+    WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
 
     WriteCommentIfSelected(activeControlPanel, 'ObesityComplicatesOption');
     WriteCommentIfSelected(activeControlPanel, 'ObesityNoMRIOption');
@@ -5039,10 +5036,10 @@ AddItemToCauseList(activeControlPanel, itemControlID, currentList) {
         if (currentList != "") {
             currentList = currentList + ", ";
         }
-        currentList += newCauseStr
+        currentList += newCauseStr;
     }
 
-    return(currentList)
+    return(currentList);
 } // AddItemToCauseList
 
 
@@ -6393,7 +6390,7 @@ ComputeRiskOfESRD(patientAge, isMale, estimatedGFR, urineAlbumin, urineCr, serum
     //
     // If we have values for albumin, phosphorous, bicarbonate, and calcium then we can compute the 8-variable form.
     if ((serumAlbumin > 0) && (serumPhos > 0) && (serumBicarb > 0) && (serumCa > 0)) {
-        sumOfRiskTerms = 0.0
+        sumOfRiskTerms = 0.0;
         sumOfRiskTerms = AddTermToESRDRiskScore(sumOfRiskTerms, "Age", -0.1992, 7.036, patientAge / 10);
         sumOfRiskTerms = AddTermToESRDRiskScore(sumOfRiskTerms, "Sex", 0.1602, 0.5642, maleValue);
         sumOfRiskTerms = AddTermToESRDRiskScore(sumOfRiskTerms, "GFR", -0.4919, 7.222, estimatedGFR / 5);
@@ -6404,7 +6401,7 @@ ComputeRiskOfESRD(patientAge, isMale, estimatedGFR, urineAlbumin, urineCr, serum
         sumOfRiskTerms = AddTermToESRDRiskScore(sumOfRiskTerms, "Calcium", -0.2228, 9.355, serumCa);    
     } // Compute the Eight-variable form.
     else {
-        sumOfRiskTerms = 0.0
+        sumOfRiskTerms = 0.0;
         sumOfRiskTerms = AddTermToESRDRiskScore(sumOfRiskTerms, "Age", -0.2201, 7.036, patientAge / 10);
         sumOfRiskTerms = AddTermToESRDRiskScore(sumOfRiskTerms, "Sex", 0.2467, 0.5642, maleValue);
         sumOfRiskTerms = AddTermToESRDRiskScore(sumOfRiskTerms, "GFR", -0.5567, 7.222, estimatedGFR / 5);
@@ -6490,31 +6487,31 @@ MedNote_ComputeMELD(INR, sodium, creatinine, Tbili) {
     if ((INR > 0) && (sodium > 0) && (creatinine > 0) && (Tbili > 0)) {
         // If bilirubin, Cr, or INR is <1.0, use 1.0.
         if (INR < 1.0) {
-            INR = 1.0
+            INR = 1.0;
         }
         if (creatinine < 1.0) {
-            creatinine = 1.0
+            creatinine = 1.0;
         }
         if (Tbili < 1.0) {
-            Tbili = 1.0
+            Tbili = 1.0;
         }
 
         // If on dialysis, or Cr >4.0, then use Cr = 4.0
         if (creatinine > 4.0) {
-            creatinine = 4.0
+            creatinine = 4.0;
         }
         if (sodium < 125) {
-            sodium = 125
+            sodium = 125;
         }
         if (sodium > 137) {
-            sodium = 137
+            sodium = 137;
         }
 
         //MELD(i) = 0.957 × ln(Cr) + 0.378 × ln(bilirubin) + 1.120 × ln(INR) + 0.643
         // Be careful, some formula will rearrange the parens, so add 6.43 rather than 10*0.643, 
         // but it is the same.
         var meldScore = (0.957 * Math.log(creatinine)) + (0.378 * Math.log(Tbili)) + (1.12 * Math.log(INR)) + 0.643;
-        meldScore = 10 * meldScore
+        meldScore = 10 * meldScore;
 
         //LogEvent("MedNote_ComputeMELD meldScore = " + meldScore);
         if (meldScore > 11.0) {
@@ -6682,7 +6679,7 @@ WriteVancomycinPlan(patientAge, weightInKg, eGFR, allowPharmacy, seriousInfectio
     } else { // if ((weightInKg <= 50)) {
         pStr = pStr + "500mg";
     }
-    explanationStr = explanationStr + "TBW=" + weightInKg + "kg"
+    explanationStr = explanationStr + "TBW=" + weightInKg + "kg";
 
     // Select the frequency based on Cr Clearance
     // May do Q8h if < 50yo and CrCl>100 and severe infection
@@ -6993,7 +6990,7 @@ WriteBillingPlan() {
     }
     if ((data1Str != null) && (data1Str != "")) {
         data1Str = "Data: Review of at least three lab results: " + data1Str;
-        WriteIndentedTextLine(data1Str)
+        WriteIndentedTextLine(data1Str);
     }
     if ((data2Str != null) && (data2Str != "")) {
         data2Str = "Data: Personal interpretation of: " + data2Str;
@@ -7109,7 +7106,7 @@ WriteCHFPlan() {
     var currentAge = GetIntInputForControlPanel(activeControlPanel, 'CHF_INPUT_CP_AGE');
     var currentEeRatio = GetIntInputForControlPanel(activeControlPanel, 'CHF_INPUT_CP_Ee_RATIO');
     var currentPAPressure = GetIntInputForControlPanel(activeControlPanel, 'CHF_INPUT_CP_PA_PRESSURE');
-    var fHasAFib = MedNote_GetCPOptionBool("CHF_INPUT_CP_AFIB")
+    var fHasAFib = MedNote_GetCPOptionBool("CHF_INPUT_CP_AFIB");
     // https://www.mdcalc.com/calc/10105/h2fpef-score-for-heart-failure-with-preserved-ejection-fraction#evidence
     // Probability of heart failure with preserved EF = (Z / (1 + Z)) x 100 where Z = ey and y is:
     // y = -9.1917 + 0.0451 x age + 0.1307 x BMI + 0.0859 x E/e' ratio + 0.0520 x pulmonary artery systolic pressure + 1.6997 x atrial fibrillation (1 for Yes and 0 for No)
@@ -7156,8 +7153,8 @@ WriteCHFPlan() {
 
         var probOfHFpEF = (expY / (1 + expY)) * 100.0;
         probOfHFpEF = probOfHFpEF * 10.0;
-        probOfHFpEF = Math.round(probOfHFpEF)
-        probOfHFpEF = probOfHFpEF / 10.0
+        probOfHFpEF = Math.round(probOfHFpEF);
+        probOfHFpEF = probOfHFpEF / 10.0;
         //LogEvent("WriteCHFPlan. probOfHFpEF = " + probOfHFpEF);
 
         probOfHFpEF = probOfHFpEF + explainerLine;
