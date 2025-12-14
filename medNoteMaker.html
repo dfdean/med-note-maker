@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -219,6 +219,7 @@
 <tr>
     <td><b>Misc</b></td> 
     <td><input type="button" id="AnemiaPlan" value="Anemia/Thrombo" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
+    <td><input type="button" id="OsteoporosisPlan" value="Osteoporosis" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="OncologyPlan" value="Oncology" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="EncephalopathyPlan" value="AMS" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
     <td><input type="button" id="SyncopePlan" value="Syncope" class="planOffStyle" onclick="OnPlanButton(this)" ></td>
@@ -5401,8 +5402,9 @@ Diagnostic creiteria include:
     <table border="0" style="border-spacing:0.1em;">
         <tr>
         <td><b><u>Nephrolithiasis</u></b></td>
-        <td><input type="button" value="Tiny Plan" class="CPOptionDisabledStyle" onclick="MedNote_ToggleTinyPlan(this, 'NephrolithiasisPlan')" ></td>
+        <!-- <td><input type="button" value="Tiny Plan" class="CPOptionDisabledStyle" onclick="MedNote_ToggleTinyPlan(this, 'NephrolithiasisPlan')" ></td> -->
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><input type="button" value="Show Hints" class="CPGroupOnStyle" onclick="MedNote_CPToggleHints(this)" ></td>
         <td><input type="button" value="Reload" class="CPGroupOnStyle" onclick="MedNote_CPReload(this, 'NephrolithiasisPlan')" ></td>
         <td><input type="button" value="Hide" class="CPGroupOnStyle" onclick="MedNote_CPToggleControls(this)" ></td>
         </tr>
@@ -5415,9 +5417,11 @@ Diagnostic creiteria include:
     <table border="0" style="border-spacing:0.1em; padding:10px;">
     <tr>
         <td><input type="button" value="History" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisShowLatestStoneOption" value="Latest Stone" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisRateOption" value="Rate Monthly" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisStoneTypeOption" value="Unknown Type" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_ShowLatestStoneOption" value="Latest Stone" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_RateOption" value="Rate Monthly" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_StoneTypeOption" value="Unknown Type" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_ExplainFrequency" value="Explain Freq" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_ExplainPH" value="Explain PH" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     <tr>
@@ -5439,31 +5443,146 @@ Diagnostic creiteria include:
         <td><input type="button" id="Nephrolithiasis24hrUrineChlorideOption" value="24hr Chloride" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="Nephrolithiasis24hrUrineUrateOption" value="24hr Urate" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td><input type="button" id="Nephrolithiasis24hrUrineOxalateOption" value="24hr Oxalate" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="Nephrolithiasis24hrUrineSulfateOption" value="24hr Sulfate" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     <tr>
         <td><input type="button" value="Workup" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisGetUSOption" value="Renal US" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisGetCTOption" value="CT Stone" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisGetUAOption" value="Get UA" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisGet24hrOption" value="Get 24hr" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_GetUSOption" value="Renal US" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_GetCTOption" value="CT Stone" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_GetUAOption" value="Get UA" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_Get24hrOption" value="Get 24hr" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     <tr>
         <td><input type="button" value="Treat" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisLowNaDietOption" value="Low Na diet" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="Nephrolithiasis2LPOFluidOption" value="2L PO fluid" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisKCitrateOption" value="K-citrate" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisThiazideOption" value="Thiazide" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="NephrolithiasisFollowupRenalOption" value="Renal Clinic" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_KCitrateOption" value="K-citrate" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_ThiazideOption" value="Thiazide" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_TamsulosinOption" value="Tamsulosin" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td><input type="button" id="Nephrolithiasis_KetorolacOption" value="Ketorolac" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_OxycodoneOption" value="Oxycodone 5" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_DilaudidOption" value="Dilaudid 0.25" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td><input type="button" id="Nephrolithiasis_2LPOFluidOption" value="2L PO fluid" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_LowNaDietOption" value="Low Na diet" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+
+
+    <tr>
+        <td><input type="button" value="On Discharge" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_LitholinkOption" value="Litholink" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="Nephrolithiasis_FollowupRenalOption" value="Renal Clinic" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     </table>
 
-    <!-- HINT TEXT -->
-    <div xID="CPHintText" style="display:None;">
-    </div> <!-- xID="CPHintText" -->
+<!-- HINT TEXT -->
+<div xID="CPHintText" style="display:None;">
+
+<p>Types of Stones
+<ul>
+    <li>Calcium Oxalate. These are the most common, about 75% of all stones, but still 1 in 4 is not Ca-Ox. 
+    <p>
+    <li>Calcium Phosphate. These can happen at high urine pH (usually 6.5 - 7.5) which is why you don't alkalinize urine
+        for Tumor Lysis Syndrome.
+    <p>
+    <li>Uric Acid. They form in acidic urine pH. Not radio-opaque on XRay, you need a CT. 
+    <p>
+    <li>Cysteine. They form in acidic urine pH. Not radio-opaque on XRay, you need a CT. Treat with Penicillamine to make Cysteine more soluble.
+    <p>
+    <li>Struvite. Ammonium-Phos, also known as infection stones. They form in alkaline urine pH. Normally appear when there is an UPPER urinary tract infection, not Cystitis, because the stone is in the kidney not the bladder. They are caused by bacteria that release Urease-splitting enzymes, typical bacteria are Proteus or Klebsiella. Urease will break down Urea (Urea --> 2NH3 + CO2) and then the CO2 forms bicarb (CO2 + H2O --> HCO3- + H+) and the H+ combines with NH3 (NH3 + H+ --> NH4+). So it releases *both* NH4+ and bicarb.
+</ul>
+
+
+<p>Stone Frequency
+<br>A stone every 1-2 months is NOT Ca-Ox. It can be Ca-Phos, Uric Acid, Cysteine. Ca-Ox is usually every year or two, not monthly.
+
+
+<p>Urine pH (alkaline urine is anything with pH above 6.5)
+<ul>
+    <li>Either Acidic or Alkaline - Calcium Oxalate
+    <p>
+    <li>Acidic - Uric Acid and Cysteine
+    <p>
+    <li>Alkaline - Calcium Phosphate
+</ul>
+
+
+<p>Shapes in Urine Microscopy
+<ul>
+    <li>Envelopes - CaOx
+    <p>
+    <li>Coffin-lid shaped (or I like to think Emerald cut) - Struvite. Ammonium-Phos, also known as infection stones
+    <p>
+    <li>Parallelograms - Glass Shards - Uric Acid
+    <p>
+    <li>Hexagons - Cysteine
+</ul>
+
+<p>Treatment
+<ul>
+    <li>If infected stone (fever, white count, etc), this is a medical emergency and needs admission for nephrostomy tube placement. 
+    <p>
+    <li>Giving K-Citrate or b-Bicarb will raise urine pH and stop Uric acid stones and Cysteine stones.
+    <p>
+    <li>Thiazide for Calcium (Ca-Ox or Ca-Phos) stones
+</ul>
+
+<p>Stone Size
+<br>Stones smaller than 8mm usually pass spontaneously.
+
+<p>Misc Notes
+<ul>
+    <li>Tamsulosin is controversial, but is also low risk so is done even if the evidence is not strong.
+</ul>
+
+<p>Risk Factors
+<ul>
+    <li>Malabsorption can cause calcium oxalate stones. Decreased Fat absorption in the gut leads to increased fecal Calcium-Fat binding, so less Calcium Oxalate forms in stool. This leads to increased Oxalate reabsorption, and so increased urinary oxalate excretion. There may not have been enough Calcium to bind the oxalate in the stool, but there is plenty in the urine, and so there are Calcium-Oxalate crystals and stones in urine. So, if Ca-Ox does not form in the stool then it will form in the urine, or as Jerry Garcia sang, <a href="https://www.youtube.com/watch?v=d4Zm0JYVuQQ" target="_blank">One man gathers what another man spills</a>
+    <p>
+    <li>Type 1 RTA (hypokalemic distal) can cause Calcium phosphate stones in a persistently alkaline urine
+</ul>
+
+
+<p>24hr Urine Goals
+<ul>
+    <li>Urine Volume more than 2L/day
+    <li>Urine Citrate more than 450 mg/day
+    <li>Urine Calcium less than 200 mg/day in wonem or 250 mg/day in men
+    <li>Urine Oxalate less than 40 mg/day
+    <li>Urine Uric Acid less than 750 mg/day in women and 800 mg/day in men
+    <li>Urine Potassium more than 50 mEq/day
+    <li>Urine Sodium - any high value increases risk of stones. Ideally keep below 200 mEq/day
+    <li>Urine Sulfate less than 30 mmol/day
+    <li>Urine Phosphorus less than 1100 mg/day
+    <li>Urine Magnesium	more than 60 mg/day
+    <li>Urine Chloride less than 200 mEq/day
+</ul>
+<p>Urine Cr is usually 20-25 mg/kg of body weight in men, 15-20 mg/kg of body weight in women. Ideally, use lean body weight 
+(because Cr comes from muscle, not fat).
+
+
+<p>Stone Prevention
+<ul>
+    <li>Drink until at least 2L of urine daily
+    <li>Low Na diet - reduces Ca in urine because NCC is down-regulated.
+    <li>high-calcium diet (maybe?) - the calcium binds to oxalate in the gut and prevents its absorption and ultimate filtration at the level of the kidneys.
+    <li>K-Citrate. This chelates Calcium in the urine
+    <li>For Calcium stones - Thiazide to increase Ca reabsorption and lower Ca levels in urine. This is not useful for Urate or Cysteine stones.
+    <li>Increase PO calcium, to bind Phos in the GI
+    <li>Avoid Topiramate - it will will reduce urine citrate
+</ul>
+
+
+
+</div> <!-- xID="CPHintText" -->
 
 </div> <!-- xID="CPBody" -->
 </div> <!-- NephrolithiasisControlPanel -->
@@ -5528,6 +5647,46 @@ Diagnostic creiteria include:
 
 </div> <!-- xID="CPBody" -->
 </div> <!-- OBESITY_CONTROL_PANEL -->
+
+
+
+
+
+
+
+
+<!-------------------------------------------------------->
+<!-- OSTEOPOROSIS_CONTROL_PANEL -->
+<!-------------------------------------------------------->
+<div id="OSTEOPOROSIS_CONTROL_PANEL">
+
+<div xID="CPHeader">
+    <table border="0" style="border-spacing:0.1em;">
+        <tr>
+        <td><b><u>Osteoporosis</u></b></td>
+        <td><input type="button" value="Tiny Plan" class="CPOptionDisabledStyle" onclick="MedNote_ToggleTinyPlan(this, 'TobaccoPlan')" ></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><input type="button" value="Show Hints" class="CPGroupOnStyle" onclick="MedNote_CPToggleHints(this)" ></td>
+        <td><input type="button" value="Reload" class="CPGroupOnStyle" onclick="MedNote_CPReload(this, 'TobaccoPlan')" ></td>
+        <td><input type="button" value="Hide" class="CPGroupOnStyle" onclick="MedNote_CPToggleControls(this)" ></td>
+        </tr>
+    </table>
+</div> <!-- xID="CPHeader" -->
+
+<div xID="CPBody">
+    <!-- Main Commands -->
+    <table border="0" style="border-spacing:0.1em; padding:10px;">
+    <tr>
+    </tr>
+
+    </table>
+
+    <!-- HINT TEXT -->
+    <div xID="CPHintText" style="display:None;">
+    </div> <!-- xID="CPHintText" -->
+
+</div> <!-- xID="CPBody" -->
+</div> <!-- OSTEOPOROSIS_CONTROL_PANEL -->
 
 
 
@@ -5611,8 +5770,9 @@ USPSTF recommends annual screening for lung cancer with low-dose computed tomogr
     <table border="0" style="border-spacing:0.1em;">
         <tr>
         <td><b><u>Alcohol</u></b></td>
-        <td><input type="button" id="EtOHWithdrawalsModifier" value="Withdrawals" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" value="Tiny Plan" class="CPOptionDisabledStyle" onclick="MedNote_ToggleTinyPlan(this, 'EtOHPlan')" ></td>
+        <td><input type="button" id="EtOH_Severity" value="Mild" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_WithdrawalsModifier" value="Withdrawals" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_Encephalopathy" value="Encephalopathy" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td><input type="button" value="Show Hints" class="CPGroupOnStyle" onclick="MedNote_CPToggleHints(this)" ></td>
         <td><input type="button" value="Reload" class="CPGroupOnStyle" onclick="MedNote_CPReload(this, 'EtOHPlan')" ></td>
@@ -5626,23 +5786,77 @@ USPSTF recommends annual screening for lung cancer with low-dose computed tomogr
     <table border="0" style="border-spacing:0.1em; padding:10px;">
     <tr>
         <td><input type="button" value="History" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="EtOHDailyUseOption" value="Daily use" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="EtOHLastUseOption" value="Last Drink" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="EtOHPastWithdrawalsOption" value="Withdrawals" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="EtOHPastSeizuresOption" value="Seizures" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_DailyUseOption" value="Daily use" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_LastUseOption" value="Last Drink" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_PastWithdrawalsOption" value="Withdrawals" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_PastSeizuresOption" value="Seizures" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Workup" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="EtOH_GetUDSOption" value="Check UDS" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_CheckHepatitisOption" value="Hepatitis Screen" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_CheckHepImmpnityOption" value="Check Hep Immun" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
 
     <tr>
         <td><input type="button" value="Treat" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
-        <td><input type="button" id="EtOHCIWAOption" value="CIWA" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="EtOHThiamineOption" value="Thiamine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="EtOHVitaminsOption" value="Vitamin" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
-        <td><input type="button" id="EtOHAABookOption" value="AA Book" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_CIWAOption" value="CIWA" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_PnenobarbOption" value="Pnenobarb" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_IVFluidsOption" value="IV Fluids" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_ThiamineOption" value="Thiamine" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_VitaminsOption" value="Vitamin" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td><input type="button" id="EtOH_SeizurePrecautionsOption" value="Precautions" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_Ondansetron_OPTION" value="PRN Zofran" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="Environment" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="EtOH_ChaplainOption" value="Chaplain" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_MusicTherapyOption" value="Music therapy" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_NarrativeMedOption" value="Narrative Med" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" value="On Discharge" class="CPGroupOnStyle" onclick="MedNote_OnCPGroupButton(this)" ></td>
+        <td><input type="button" id="EtOH_NaltrexoneOption" value="Naltrexone" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_AcamprosateOption" value="Acamprosate" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
+        <td><input type="button" id="EtOH_AABookOption" value="AA Book" class="CPOptionDisabledStyle" toggleState="-1" onclick="MedNote_OnCPOptionButton(this)" ></td>
     </tr>
     </table>
 
     <!-- HINT TEXT -->
     <div xID="CPHintText" style="display:None;">
+<p>USPSTF recommends routine screening for unhealthy alcohol use, such as Alcohol Use Disorders Identification Test (AUDIT) or abbreviated AUDIT-Consumption (AUDIT-C), or single-question screen “How many times in the past year have you had five or more drinks in 1 day?” Use four drinks in one day for women and adults older than age 65 years.
+
+<p>Binge drinking criteria:
+<ul>
+<li>For men, 5 or more drinks on one occasion
+<li>For women, 4 or more drinks on one occasion
+</ul>
+
+<p>Heavy drinking criteria:
+<ul>
+<li>For men, 15 or more drinks weekly
+<li>For women, 8 or more drinks weekly
+</ul>
+
+<p>Both naltrexone (an opioid receptor antagonist) and acamprosate are first-line for alcohol use disorder. I prefer naltrexone because it is once daily or can later be given with monthly injection. Acamprosate is three times daily so more difficult for compliance. Naltrexone may reduce neuronal reward pathways so reduce cravings.
+
+<p>Consider any patient with severe alcohol use disorder to be severely malnourished as well.
+
+<p>Things to avoid:
+<ul>
+<li>I avoid Chlorthiazepoxide (Librium) because I am never sure if a patient will resume drinking on discharge and I do not want them on
+both a benzo and alcohol together.
+<li>Do not Fomepizole - it can induce withdrawals. It is an inhibitor of alcohol dehydrogenase, so it slows the formation of toxic metabolites when methanol or ethylene glycol is ingested. It is the first-line agent for methanol or ethylene glycol ingestion.
+<li>Disulfiram inhibits aldehyde dehydrogenase and so causes aldehyde buildup after drinking, which causes vomiting. It is second-line treatment and lacks conclusive vidence for its efficacy for abstinence.
+</ul>
+
     </div> <!-- xID="CPHintText" -->
 
 </div> <!-- xID="CPBody" -->

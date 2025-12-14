@@ -152,6 +152,7 @@ StartMedNoteMaker() {
     InitPlanState("CovidPlan", WriteCovidPlan);
     InitPlanState("EncephalopathyPlan", WriteEncephalopathyPlan);
     InitPlanState("SyncopePlan", WriteSyncopePlan);
+    InitPlanState("OsteoporosisPlan", WriteOsteoporosisPlan);
     InitPlanState("OncologyPlan", WriteOncologyPlan);
     InitPlanState("HepatitisPlan", WriteHepatitisPlan);
     InitPlanState("PancPlan", WritePancreatitisPlan);

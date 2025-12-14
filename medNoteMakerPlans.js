@@ -24,6 +24,10 @@
 //
 // This file generates the plan for each medical problem.
 /////////////////////////////////////////////////////////////////////////////
+// JSHint Directives
+/* globals MedNote_GetCPOptionValue, MedNote_StartNewPlanSection, MedNote_GetCPOptionBool, WriteCommentIfSelected, WriteListOfSelectedValues, 
+    MedNote_GetCPOptionValue, MedNote_AddRelatedProblem, GetFloatInputForControlPanel, WriteComment, WriteActionIfSelected, 
+    WriteListOfSelectedActions, LogEvent, WriteListOfSubActions */
 
 var g_BASELINE_SOFA_SCORE = 0;
 var g_CURRENT_SOFA_SCORE = 0;
@@ -86,6 +90,7 @@ WriteCirrhosisPlan() {
     var planStr = "";
     var subPlanActionList = [];
     var subsectionName = "";
+    var optionNameList = [];
 
     // Diagnosis and modifiers
     planNameStr = MedNote_GetCPOptionValue("CirrhosisDiagnosidOption");
@@ -116,7 +121,7 @@ WriteCirrhosisPlan() {
 
     // Diagnostic criteria and possible cause
     WriteCommentIfSelected(activeControlPanel, "CirrhosisDiagnosisCriteriaOption");
-    var optionNameList = [ "CirrhosisDecompAscitesOption", "CirrhosisDecompVaricesOption", "CirrhosisDecompHEOption"];
+    optionNameList = [ "CirrhosisDecompAscitesOption", "CirrhosisDecompVaricesOption", "CirrhosisDecompHEOption"];
     WriteListOfSelectedValues(activeControlPanel, "This is decompensated with past history of: ", false, "", optionNameList, "");
     WriteCommentIfSelected(activeControlPanel, "CirrhosisBiopsyRecordOption");
     WriteCommentIfSelected(activeControlPanel, "CirrhosisCauseOption");
@@ -329,6 +334,7 @@ WriteAcidBasePlan() {
     var planStr = "";
     var deltaGapToDeltaBicarbRatio = -1;
     var predictedPaCO2 = -1;
+    var optionNameList = [];
 
 
     // Start the section
@@ -657,7 +663,7 @@ WriteAcidBasePlan() {
 
     ////////////////////////////////
     // Processes
-    var optionNameList = [ "AcidBaseMetGapAcidProcessOption", "AcidBaseMetNonGapAcidProcessOption", "AcidBaseMetAlkProcessOption", "AcidBaseRespAcidProcessOption", "AcidBaseRespAlkProcessOption"];
+    optionNameList = [ "AcidBaseMetGapAcidProcessOption", "AcidBaseMetNonGapAcidProcessOption", "AcidBaseMetAlkProcessOption", "AcidBaseRespAcidProcessOption", "AcidBaseRespAlkProcessOption"];
     WriteListOfSelectedValues(activeControlPanel, "There is a ", false, "", optionNameList, "");
 
     ////////////////////////////////
@@ -969,7 +975,7 @@ WriteSepsisPlan() {
     //////////////////////////
     // Describe the possible sources.
     optionNameList = [ "SepsisUTISourceOption", "SepsisPneumoniaSourceOption", "SepsisCellulitisSourceOption" ];
-    WriteListOfSelectedValues(activeControlPanel, "The possible sources of infection include: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The possible sources of infection include: ", false, "", optionNameList, "");
 
     // Workup
     optionNameList = [ "SepsisWUBloodCultureOption", "SepsisWUUAOption", "SepsisWUNaresOption", "SepsisWUSputumCultureOption",
@@ -2426,36 +2432,39 @@ WriteRenalTransplantPlan() {
 //
 // [WriteNephrolithiasisPlan]
 //
-// Updated 2022-11-3
+// 2022-11-3 - Updated
+// 2025-12-12 - Add Notes text, group into subplans, add Tamsulosin and Pain control,
+//  add litholink
 ////////////////////////////////////////////////////////////////////////////////
 function 
 WriteNephrolithiasisPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var optionNameList = [];
+    var subPlanActionList = [];
 
     planStr = "Nephrolithiasis";
-    if (PrintSingleLinePlanAtEnd('NephrolithiasisPlan', planStr, "Monitor")) {
-        return;
-    }
+    // if (PrintSingleLinePlanAtEnd('NephrolithiasisPlan', planStr, "Monitor")) { return; }
     activeControlPanel = MedNote_StartNewPlanSection(planStr, "NephrolithiasisPlan");
     if (!activeControlPanel) {
-        LogEvent("xxxxx. activeControlPanel is null");
+        LogEvent("WriteNephrolithiasisPlan. activeControlPanel is null");
         return;
     }
 
     // History
-    WriteCommentIfSelected(activeControlPanel, "NephrolithiasisShowLatestStoneOption");
-    WriteCommentIfSelected(activeControlPanel, "NephrolithiasisRateOption");
-    var optionNameList = [ "NephrolithiasisStoneTypeOption"];
+    WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis_ShowLatestStoneOption");
+    WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis_RateOption");
+    optionNameList = [ "Nephrolithiasis_StoneTypeOption"];
     WriteListOfSelectedValues(activeControlPanel, "Previous stones were ", false, "", optionNameList, "");
+    WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis_ExplainFrequency");
+    WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis_ExplainPH");
 
-    // Urine
+    // Urine Results
     WriteCommentIfSelected(activeControlPanel, "NephrolithiasisShowUrinepHOption");
     WriteCommentIfSelected(activeControlPanel, "NephrolithiasisShowUrineSedimentOption");
  
-    // 24hr Urine
-    // WriteComment("24hr urine labs:");
+    // 24hr Urine Results
     WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis24hrUrineVolumeOption");
     WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis24hrUrineCalciumOption");
     WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis24hrUrineCitrateOption");
@@ -2464,20 +2473,20 @@ WriteNephrolithiasisPlan() {
     WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis24hrUrineChlorideOption");
     WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis24hrUrineUrateOption");
     WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis24hrUrineOxalateOption");
-    WriteCommentIfSelected(activeControlPanel, "Nephrolithiasis24hrUrineSulfateOption");
  
     // Workup
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisGetUAOption");
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisGet24hrOption");
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisGetUSOption");
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisGetCTOption");
+    subPlanActionList = ["Nephrolithiasis_GetUSOption", "Nephrolithiasis_GetCTOption", "Nephrolithiasis_GetUAOption", "Nephrolithiasis_Get24hrOption"];
+    MedNode_WriteSubPlan("Workup", subPlanActionList);
 
     // Treat
-    WriteActionIfSelected(activeControlPanel, "Nephrolithiasis2LPOFluidOption");
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisLowNaDietOption");
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisKCitrateOption");
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisThiazideOption");
-    WriteActionIfSelected(activeControlPanel, "NephrolithiasisFollowupRenalOption");
+    subPlanActionList = ["Nephrolithiasis_KCitrateOption", "Nephrolithiasis_ThiazideOption", "Nephrolithiasis_TamsulosinOption", "Nephrolithiasis_KetorolacOption",
+                            "Nephrolithiasis_OxycodoneOption", "Nephrolithiasis_DilaudidOption",
+                            "Nephrolithiasis_2LPOFluidOption", "Nephrolithiasis_LowNaDietOption"];
+    MedNode_WriteSubPlan("Treat", subPlanActionList);
+
+    // On Discharge
+    subPlanActionList = ["Nephrolithiasis_LitholinkOption", "Nephrolithiasis_FollowupRenalOption"];
+    MedNode_WriteSubPlan("On Discharge", subPlanActionList);
 } // WriteNephrolithiasisPlan
 
 
@@ -2576,41 +2585,21 @@ WriteNephroticPlan() {
 //
 // [WriteEtOHPlan]
 //
-// Excessive drinking includes binge drinking, heavy drinking, and any drinking by pregnant women or people younger than age 21.
-// 
-//     Binge drinking, the most common form of excessive drinking, is defined as consuming
-//         For women, 4 or more drinks during a single occasion.
-//         For men, 5 or more drinks during a single occasion.
-//     Heavy drinking is defined as consuming
-//         For women, 8 or more drinks per week.
-//         For men, 15 or more drinks per week.
-
-// Most people who drink excessively are not alcoholics or alcohol dependent.5
-// What is moderate drinking?
-
-// The Dietary Guidelines for Americans defines moderate drinking as up to 1 drink per day for women and up to 2 drinks per day for men.4 In addition, the Dietary Guidelines do not recommend that individuals who do not drink alcohol start drinking for any reason.
-// https://www.cdc.gov/alcohol/fact-sheets/alcohol-use.htm
-
+// 2025-12-8 - Add workup, Consults, more items for inpatient treatment, discharge meds
 ////////////////////////////////////////////////////////////////////////////////
 function 
 WriteEtOHPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
-
-    var withdrawalsPlanStr = MedNote_GetCPOptionValue("EtOHWithdrawalsModifier");
+    var optionNameList = [];
 
     // Pick a primary plan.
     planStr = "Alcohol Use Disorder";
-    if ((withdrawalsPlanStr != null) && (withdrawalsPlanStr != "")) {
-        planStr = withdrawalsPlanStr;
+    modifierStr = MedNote_GetCPOptionValue("EtOH_Severity");
+    if ((modifierStr != null) && (modifierStr != "")) {
+        planStr = planStr + " (" + modifierStr + ")";
     }
-
-    if (PrintSingleLinePlanAtEnd('EtOHPlan', planStr, "Monitor for withdrawal")) {
-        return;
-    }
-
-    // Start the problem.
     activeControlPanel = MedNote_StartNewPlanSection(planStr, "EtOHPlan");
     if (!activeControlPanel) {
         LogEvent("WriteEtOHPlan. activeControlPanel is null");
@@ -2618,28 +2607,62 @@ WriteEtOHPlan() {
     }
 
     // Write secondary plans    
-    if ((withdrawalsPlanStr != null) && (withdrawalsPlanStr != "")) {
-        MedNote_AddRelatedProblem("Toxic Encephalopathy due to Alcohol Withdrawals");
+    var withdrawalPlanStr = MedNote_GetCPOptionValue("EtOH_WithdrawalsModifier");
+    if ((withdrawalPlanStr != null) && (withdrawalPlanStr != "")) {
+        MedNote_AddRelatedProblem(withdrawalPlanStr);
+    }
+    var encephalopathyPlanStr = MedNote_GetCPOptionValue("EtOH_Encephalopathy");
+    if ((encephalopathyPlanStr != null) && (encephalopathyPlanStr != "")) {
+        MedNote_AddRelatedProblem(encephalopathyPlanStr);
     }
 
-    var optionNameList = [ "EtOHDailyUseOption", "EtOHLastUseOption"];
+    // Write history
+    var optionNameList = [ "EtOH_DailyUseOption", "EtOH_LastUseOption", "EtOH_PastWithdrawalsOption", "EtOH_PastSeizuresOption"];
     WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "");
 
-    planStr = MedNote_GetCPOptionValue("EtOHPastWithdrawalsOption");
-    if ((planStr != null) && (planStr != "")) {
-        modifierStr = MedNote_GetCPOptionValue("EtOHPastSeizuresOption");
-        if ((modifierStr != null) && (modifierStr != "")) {
-            planStr += " " + modifierStr;
-        }
-        WriteComment(planStr);
-    }
-    WriteCommentIfSelected(activeControlPanel, "EtOHAABookOption");
+    // Workup
+    optionNameList = [ "EtOH_GetUDSOption", "EtOH_CheckHepatitisOption", "EtOH_CheckHepImmpnityOption"];
+    WriteListOfSelectedActions(activeControlPanel, "Check: ", optionNameList);
 
-    WriteActionIfSelected(activeControlPanel, "EtOHCIWAOption");
-    WriteActionIfSelected(activeControlPanel, "EtOHThiamineOption");
-    WriteActionIfSelected(activeControlPanel, "EtOHVitaminsOption");
-    //Chlorthiazepoxide
+    // Inpatient Treatment
+    subPlanActionList = ["EtOH_CIWAOption", "EtOH_PnenobarbOption", "EtOH_IVFluidsOption", "EtOH_ThiamineOption", "EtOH_VitaminsOption", "EtOH_SeizurePrecautionsOption", "EtOH_Ondansetron_OPTION"];
+    MedNode_WriteSubPlan("Treat", subPlanActionList);
+
+    // Consults
+    actionNameList = [ "EtOH_ChaplainOption", "EtOH_MusicTherapyOption", "EtOH_NarrativeMedOption"];
+    WriteListOfSubActions("Consults", actionNameList);
+
+    // On Discharge Treatment
+    subPlanActionList = ["EtOH_NaltrexoneOption", "EtOH_AcamprosateOption", "EtOH_AABookOption"];
+    MedNode_WriteSubPlan("On Discharge", subPlanActionList);
 } // WriteEtOHPlan
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// [WriteOsteoporosisPlan]
+//
+// 2025-12-8 - Created
+////////////////////////////////////////////////////////////////////////////////
+function 
+WriteOsteoporosisPlan() {    
+    var activeControlPanel = null;
+    var planStr = "";
+    var modifierStr = "";
+
+    planStr = "Osteoporosis";
+    activeControlPanel = MedNote_StartNewPlanSection(planStr, "OsteoporosisPlan");
+    if (!activeControlPanel) {
+        LogEvent("WriteOsteoporosisPlan. activeControlPanel is null");
+        return;
+    }
+
+} // WriteOsteoporosisPlan
+
+
 
 
 
@@ -2650,7 +2673,7 @@ WriteEtOHPlan() {
 //
 // [WriteHypokalemiaPlan]
 //
-// Updated 2022-10-31
+// 2022-10-31 - Updated 
 // 2023-11-14 - Combined workup labs into a single task
 ////////////////////////////////////////////////////////////////////////////////
 function 
@@ -3161,10 +3184,10 @@ WriteBPHPlan() {
     }
 
     var optionNameList = [ 'BPH_HOME_TAMSULOSIN_OPTION', 'BPH_HOME_FINASTERIDE_OPTION', 'BPH_HOME_IO_CATH_OPTION' ]; 
-    WriteListOfSelectedValues(activeControlPanel, "Home regimen includes: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Home regimen includes: ", false, "", optionNameList, "");
 
     optionNameList = [ 'BPH_SYMPTOMS_STRAINING_OPTION', 'BPH_SYMPTOMS_WEAK_STREAM_OPTION', 'BPH_SYMPTOMS_SLOW_STREAM_OPTION', 'BPH_SYMPTOMS_FREQUENCY_OPTION' ]; 
-    WriteListOfSelectedValues(activeControlPanel, "The patient reports urinary symptoms, including: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The patient reports urinary symptoms, including: ", false, "", optionNameList, "");
 
     WriteCommentIfSelected(activeControlPanel, "BPH_SHOW_PSA_OPTION");
 
@@ -3947,7 +3970,7 @@ WriteHepatitisPlan() {
                  && (currentAlbumin > 0) && (currentPT > 0)) {
             // Convert g/dL to g/L. This is not explicitly explained in a lot of the online calculators
             // but they all do it behind the scenes.
-            currentAlbumin = currentAlbumin * 10.0
+            currentAlbumin = currentAlbumin * 10.0;
 
             // Convert mmol/L to mg/dL
             if (true) {
@@ -4091,15 +4114,15 @@ WriteGISymptomsPlan() {
     }
 
     var optionNameList = [ "GISymptoms_EmesisBilious_OPTION", "GISymptoms_EmesisBloodyOption"];
-    WriteListOfSelectedValues(activeControlPanel, "The emesis is ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The emesis is ", false, "", optionNameList, "");
 
     optionNameList = [ "GISymptoms_DiarrheaBloodyOption", "GISymptoms_Melena_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "There diarrhea is ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "There diarrhea is ", false, "", optionNameList, "");
 
     WriteCommentIfSelected(activeControlPanel, 'GISymptoms_StartTimeOption');
 
     optionNameList = [ "GISymptoms_SxLocation_OPTION", "GISymptoms_SxQuality_OPTION", "GISymptoms_SxRadiate_OPTION", "GISymptoms_SxSevere_OPTION", "GISymptoms_SxConstant_OPTION", "GISymptoms_SxUnique_OPTION", "GISymptoms_SxWithFood_OPTION", "GISymptoms_SxWithStool_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "The abdominal pain is ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The abdominal pain is ", false, "", optionNameList, "");
 
 
     ///////////////////////////
@@ -4193,7 +4216,7 @@ WriteGoutPlan() {
 
     // Home Meds
     var optionNameList = [ "GOUT_HOME_ALLOPURINOL_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "Home medications: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Home medications: ", false, "", optionNameList, "");
 
     // Treat
     WriteActionIfSelected(activeControlPanel, "GOUT_Target_OPTION");
@@ -4219,6 +4242,7 @@ WriteSyncopePlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var optionNameList = [];
 
     planStr = "Syncope";
     activeControlPanel = MedNote_StartNewPlanSection(planStr, "SyncopePlan");
@@ -4231,8 +4255,8 @@ WriteSyncopePlan() {
     WriteCommentIfSelected(activeControlPanel, "SYNCOPE_Orthostatic_OPTION");
     WriteCommentIfSelected(activeControlPanel, "SYNCOPE_SHOW_EKG_OPTION");
     // Differential
-    var optionNameList = [ "SYNCOPE_DIFFERENTIAL_Medications_OPTION", "SYNCOPE_DIFFERENTIAL_Cardiogenic_OPTION", "SYNCOPE_DIFFERENTIAL_Neuro_OPTION", "SYNCOPE_DIFFERENTIAL_Hematologic_OPTION", "SYNCOPE_DIFFERENTIAL_Infectious_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "Possible causes include: ", false, "", optionNameList, "")
+    optionNameList = [ "SYNCOPE_DIFFERENTIAL_Medications_OPTION", "SYNCOPE_DIFFERENTIAL_Cardiogenic_OPTION", "SYNCOPE_DIFFERENTIAL_Neuro_OPTION", "SYNCOPE_DIFFERENTIAL_Hematologic_OPTION", "SYNCOPE_DIFFERENTIAL_Infectious_OPTION"];
+    WriteListOfSelectedValues(activeControlPanel, "Possible causes include: ", false, "", optionNameList, "");
 
     // Workup
     optionNameList = [ "SYNCOPE_CT_HEAD_OPTION", "SYNCOPE_UDS_OPTION", "SYNCOPE_EEG_OPTION"];
@@ -4437,13 +4461,13 @@ WriteCovidPlan() {
 
     var optionNameList = [ "CovidRiskCRPOver100Option", "CovidRiskDDimerOver1000Option", "CovidRiskLymphsUnder800Option", 
                             "CovidRiskLDHOver245Option", "CovidRiskFerritinOver500Option"];
-    WriteListOfSelectedValues(activeControlPanel, "The patient has the following lab risk factors: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The patient has the following lab risk factors: ", false, "", optionNameList, "");
 
     optionNameList = [ "CovidRiskAgeOver65Option", "CovidRiskDM2Option", "CovidRiskAsthmaOption", "CovidRiskCOPDOption", 
                            "CovidRiskTobaccoOption", "CovidRiskObeseOption", "CovidRiskCADOption", "CovidRiskCHFOption", 
                            "CovidRiskCVAOption", "CovidRiskLungDiseaseOption", "CovidRiskCirrhosisOption", 
                            "CovidRiskImmuneSuppressionOption", "CovidRiskCFOption", "CovidRiskSickleCellOption", "CovidRiskCancerOption"]
-    WriteListOfSelectedValues(activeControlPanel, "The patient has the following clinical risk factors: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The patient has the following clinical risk factors: ", false, "", optionNameList, "");
 
     // Care Plan
     WriteCommentIfSelected(activeControlPanel, "CovidNoTreatOption");
@@ -4562,21 +4586,21 @@ WriteAnemiaPlan() {
 
     //////////////////////////
     // Iron Binding Results
-    optionName = "AnemiaTIBCStatusOption"
+    optionName = "AnemiaTIBCStatusOption";
     toggleState = MedNote_GetCPOptionToggleState(optionName);
     if (toggleState == 0) {
         possibleACDResults = AddItemToCauseList(activeControlPanel, optionName, possibleACDResults);
     } else if (toggleState > 0) {
         normalResults = AddItemToCauseList(activeControlPanel, optionName, normalResults);
     }
-    optionName = "AnemiaTransferrinStatusOption"
+    optionName = "AnemiaTransferrinStatusOption";
     toggleState = MedNote_GetCPOptionToggleState(optionName);
     if (toggleState == 0) {
         possibleACDResults = AddItemToCauseList(activeControlPanel, optionName, possibleACDResults);
     } else if (toggleState > 0) {
         normalResults = AddItemToCauseList(activeControlPanel, optionName, normalResults);
     }
-    optionName = "AnemiaFeSatStatusOption"
+    optionName = "AnemiaFeSatStatusOption";
     toggleState = MedNote_GetCPOptionToggleState(optionName);
     if (toggleState == 0) {
         possibleACDResults = AddItemToCauseList(activeControlPanel, optionName, possibleACDResults);
@@ -4586,7 +4610,7 @@ WriteAnemiaPlan() {
 
     ////////////////////////////
     // Nutritional Results
-    optionName = "AnemiaB12StatusOption"
+    optionName = "AnemiaB12StatusOption";
     toggleState = MedNote_GetCPOptionToggleState(optionName);
     //LogEvent("B12 toggleState = " + toggleState);
     if (toggleState > 0) {
@@ -4595,7 +4619,7 @@ WriteAnemiaPlan() {
     } else if (toggleState == 0) {
         normalResults = AddItemToCauseList(activeControlPanel, optionName, normalResults);
     }
-    optionName = "AnemiaFolateStatusOption"
+    optionName = "AnemiaFolateStatusOption";
     toggleState = MedNote_GetCPOptionToggleState(optionName);
     if (toggleState > 0) {
         possibleNutritionResults = AddItemToCauseList(activeControlPanel, optionName, possibleNutritionResults);
@@ -4605,7 +4629,7 @@ WriteAnemiaPlan() {
 
     ////////////////////////////
     // Blood Loss Results
-    optionName = "AnemiaHemoccultStatusOption"
+    optionName = "AnemiaHemoccultStatusOption";
     toggleState = MedNote_GetCPOptionToggleState(optionName);
     //LogEvent("B12 toggleState = " + toggleState);
     if (toggleState > 0) {
@@ -4614,7 +4638,7 @@ WriteAnemiaPlan() {
     } else if (toggleState == 0) {
         normalResults = AddItemToCauseList(activeControlPanel, optionName, normalResults);
     }
-    optionName = "AnemiaHPyloriStatusOption"
+    optionName = "AnemiaHPyloriStatusOption";
     toggleState = MedNote_GetCPOptionToggleState(optionName);
     if (toggleState > 0) {
         bloodLossResults = AddItemToCauseList(activeControlPanel, optionName, bloodLossResults);
@@ -4825,13 +4849,13 @@ WriteDepressionPlan() {
 
     // DHM
     var optionNameList = [ "MOOD_DISORDER_AxisI_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "Axis I: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Axis I: ", false, "", optionNameList, "");
     optionNameList = [ "MOOD_DISORDER_AxisII_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "Axis II: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Axis II: ", false, "", optionNameList, "");
     optionNameList = [ "MOOD_DISORDER_AxisIII_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "Axis III: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Axis III: ", false, "", optionNameList, "");
     optionNameList = [ "MOOD_DISORDER_AxisIV_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "Axis IV: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Axis IV: ", false, "", optionNameList, "");
     // PHQ-9 score (anhedonia + SIGECAPS, give a score 0=none,1=several days,2=over half days,3=nearly all days)Score over 9 is moderate depression
 
     // SIGECAPS
@@ -4844,7 +4868,7 @@ WriteDepressionPlan() {
 
     // Comorbidities
     optionNameList = [ "MOOD_DISORDER_MANIA_OPTION", "MOOD_DISORDER_PTSD_OPTION", "MOOD_DISORDER_ANXIETY_OPTION"];
-    WriteListOfSelectedValues(activeControlPanel, "Comorbidities include: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Comorbidities include: ", false, "", optionNameList, "");
 
     // Workup
     WriteActionIfSelected(activeControlPanel, "MOOD_DISORDER_HYPOTHYROID_OPTION");
@@ -4862,8 +4886,8 @@ WriteDepressionPlan() {
 //
 // [WriteTobaccoPlan]
 //
-// Updated 2020-5-30
-// Updated 2022-10-30
+// 2020-5-30 - Updated
+// 2022-10-30 - Updated
 ////////////////////////////////////////////////////////////////////////////////
 function 
 WriteTobaccoPlan() {
@@ -5844,12 +5868,12 @@ WritePreventionPlan() {
 
     // Osteoporosis
     optionNameList = [ "Prevention_Check_DEXXA_Option", "Prevention_Check_VitD_Option"];
-    WriteListOfSelectedActions(activeControlPanel, "Osteoporosis screening, check ", optionNameList)
+    WriteListOfSelectedActions(activeControlPanel, "Osteoporosis screening, check ", optionNameList);
 
     // Vaccinations
     var optionNameList = [ "Prevention_Give_Flu_Option", "Prevention_Give_Covid_Option", "Prevention_Give_Pneumovax_Option", 
         "Prevention_Give_Zostervax_Option", "Prevention_Give_HepA_Vax_Option", "Prevent;ion_Give_HepB_Vax_Option", "Prevention_Give_HPV_Option" ];
-    WriteListOfSelectedActions(activeControlPanel, "Vaccinations: ", optionNameList)
+    WriteListOfSelectedActions(activeControlPanel, "Vaccinations: ", optionNameList);
 
     // Colon Cancer
     optionNameList = [ "Prevention_Hemoccult_Option", "Prevention_Colonoscopy_Option"];
