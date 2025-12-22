@@ -2134,10 +2134,23 @@ var g_AllOptionsDeclaration = {
     ///////////////////////////////////////////////////////////
     // Osteoporosis CONTROLS
     ///////////////////////////////////////////////////////////
+    "Osteoporosis_PossibleModifier" : { "ButtonLabelList" : ["Possible"], "ValueList" : ["Possible "], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
 
-
-
-
+    // Status
+    "Osteoporosis_PastDEXAOption" : { "ButtonLabelList" : ["Past DEXA"], "ValueList" : ["Past DEXA showed Osteoporosis"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    "Osteoporosis_PastFractureOption" : { "ButtonLabelList" : ["Past Frac"], "ValueList" : ["History of fragility fracture"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    "Osteoporosis_HomeMedsOption" : { "ButtonLabelList" : ["Home Meds"], "ValueList" : ["Home Meds: Alendronate"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    // Workup
+    "Osteoporosis_VitDOption" : { "ButtonLabelList" : ["Vit D"], "ValueList" : ["Vit D"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    "Osteoporosis_ICalOption" : { "ButtonLabelList" : ["Ion Cal"], "ValueList" : ["ionized Calcium"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    "Osteoporosis_TSHOption" : { "ButtonLabelList" : ["TSH"], "ValueList" : ["TSH"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    // Treat
+    "Osteoporosis_CholecalOption" : { "ButtonLabelList" : ["Cholecal"], "ValueList" : ["Cholecal 2000IU daily"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    // Discharge
+    "Osteoporosis_AlendronateOption" : { "ButtonLabelList" : ["Alendronate"], "ValueList" : ["Alendronate 70mg weekly"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    "Osteoporosis_DEXAOption" : { "ButtonLabelList" : ["DEXA"], "ValueList" : ["Dual-energy x-ray absorptiometry (DEXA)"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    "Osteoporosis_RenalClinicOption" : { "ButtonLabelList" : ["Renal Clinic"], "ValueList" : ["Nephrology Bone Clinic"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
+    "Osteoporosis_EndocrineClinicOption" : { "ButtonLabelList" : ["Endocrine Clinic"], "ValueList" : ["Endocrinology Clinic"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : -1, "PlanSectionID" : "OsteoporosisPlan"},
 
 
     ///////////////////////////////////////////////////////////
@@ -2551,9 +2564,11 @@ var g_AllOptionsDeclaration = {
     "EtOH_PastSeizuresOption" : { "ButtonLabelList" : ["Seizures"], "ValueList" : ["Past history of witdrawal seizures"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
     "EtOH_PastWithdrawalsOption" : { "ButtonLabelList" : ["Withdrawals"], "ValueList" : ["Past history of DT withdrawals"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
     // Workup
-    "EtOH_GetUDSOption": { "ButtonLabelList" : ["Check UDS"], "ValueList" : ["Check Urine Drug Screen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
+    "EtOH_GetAlcoholLevelOption": { "ButtonLabelList" : ["Serum Volatiles"], "ValueList" : ["Serum Ethanol and other Alcohols"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
+    "EtOH_GetSerumOsmOption": { "ButtonLabelList" : ["Serum Osm"], "ValueList" : ["Serum Osmolality"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
+    "EtOH_GetUDSOption": { "ButtonLabelList" : ["Urine Drug Screen"], "ValueList" : ["Urine Drug Screen"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
     "EtOH_CheckHepatitisOption" : { "ButtonLabelList" : ["Hepatitis Screen"], "ValueList" : ["HAV, HBV, HCV screens"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
-    "EtOH_CheckHepImmpnityOption" : { "ButtonLabelList" : ["Check Hep Immun"], "ValueList" : ["HBV, and HAV immunity"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
+    "EtOH_CheckHepImmpnityOption" : { "ButtonLabelList" : ["Hep Immun"], "ValueList" : ["HBV, and HAV immunity"], "htmlButton" : null, "toggleBehavior" : "OK/Other/NA", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
     // Treat
     "EtOH_CIWAOption" : { "ButtonLabelList" : ["CIWA", "CIWA"], "ValueList" : ["PRN Lorazepam per CIWA protocol", "PRN Diazepam per CIWA protocol"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},
     "EtOH_PnenobarbOption" : { "ButtonLabelList" : ["Pnenobarb"], "ValueList" : ["Pnenobarbital once"], "htmlButton" : null, "toggleBehavior" : "On/Disabled", "toggleState" : -1, "InitialToggleState" : -1, "savedToggleState" : 0, "PlanSectionID" : "EtOHPlan"},

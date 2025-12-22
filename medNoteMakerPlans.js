@@ -1669,6 +1669,7 @@ WriteCOPDPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var optionNameList = [];
 
     planStr = "Chronic Obstructive Pulmonary Disease";
     modifierStr = MedNote_GetCPOptionValue("COPDPossibleOption");
@@ -1757,7 +1758,7 @@ WriteCOPDPlan() {
     } // End of Exacerbation stage
 
     // Triggers
-    var optionNameList = [ "COPDTriggerInfectionOption", "COPDTriggerSmokingOption", "COPDTriggerComplianceOption", 
+    optionNameList = [ "COPDTriggerInfectionOption", "COPDTriggerSmokingOption", "COPDTriggerComplianceOption", 
                             "COPDTriggerMedChangesOption", "COPDTriggerAllergensOption"];
     WriteListOfSelectedValues(activeControlPanel, "The possible triggers of this exacerbation include: ", false, "", optionNameList, "");
 
@@ -1794,7 +1795,7 @@ WriteCOPDPlan() {
     }
     WriteCommentIfSelected(activeControlPanel, "COPDSymptomsMRCScore");
     WriteCommentIfSelected(activeControlPanel, "COPDShowEOS");
-    var optionNameList = [ "COPDHomeO2Option", "COPDHomeBiPAPOption"];
+    optionNameList = [ "COPDHomeO2Option", "COPDHomeBiPAPOption"];
     WriteListOfSelectedValues(activeControlPanel, "At baseline: ", false, "", optionNameList, "");
 
     //////////////////////////////////////////////
@@ -2298,6 +2299,7 @@ WriteAsthmaPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var optionNameList = [];
 
     planStr = "Asthma";
     if (PrintSingleLinePlanAtEnd('AsthmaPlan', planStr, "Continue as needed short-acting beta agonist")) {
@@ -2319,7 +2321,7 @@ WriteAsthmaPlan() {
     WriteCommentIfSelected(activeControlPanel, "AsthmaStageOption"); 
  
     // Triggers
-    var optionNameList = [ "AsthmaTriggerInfectionOption", "AsthmaTriggerSmokingOption", "AsthmaTriggerAllergensOption",
+    optionNameList = [ "AsthmaTriggerInfectionOption", "AsthmaTriggerSmokingOption", "AsthmaTriggerAllergensOption",
                             "AsthmaTriggerComplianceOption", "AsthmaTriggerMedChangesOption"];
     WriteListOfSelectedValues(activeControlPanel, "Possible triggers for this exacerbation include: ", false, "", optionNameList, "");
 
@@ -2333,7 +2335,7 @@ WriteAsthmaPlan() {
     WriteActionIfSelected(activeControlPanel, "AsthmaXrayOption"); 
     WriteActionIfSelected(activeControlPanel, "AsthmaGetABGOption"); 
     WriteActionIfSelected(activeControlPanel, "AsthmaGetCBCOption"); 
-    var optionNameList = [ "AsthmaGetRVPOption", "AsthmaProcalOption",
+    optionNameList = [ "AsthmaGetRVPOption", "AsthmaProcalOption",
                             'AsthmaCultureSputOption', 'AsthmaCultureBloodOption', 'AsthmaUrineAntigensOption']; 
     WriteListOfSubActions("Check infectious causes", optionNameList);
     optionNameList = [ 'AsthmaGetAllergenIgEOption', 'AsthmaGetAPBAIgGOption',
@@ -2617,15 +2619,17 @@ WriteEtOHPlan() {
     }
 
     // Write history
-    var optionNameList = [ "EtOH_DailyUseOption", "EtOH_LastUseOption", "EtOH_PastWithdrawalsOption", "EtOH_PastSeizuresOption"];
+    optionNameList = [ "EtOH_DailyUseOption", "EtOH_LastUseOption", "EtOH_PastWithdrawalsOption", "EtOH_PastSeizuresOption"];
     WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "");
 
     // Workup
-    optionNameList = [ "EtOH_GetUDSOption", "EtOH_CheckHepatitisOption", "EtOH_CheckHepImmpnityOption"];
+    optionNameList = [ "EtOH_GetAlcoholLevelOption", "EtOH_GetSerumOsmOption", "EtOH_GetUDSOption", "EtOH_CheckHepatitisOption", 
+                        "EtOH_CheckHepImmpnityOption"];
     WriteListOfSelectedActions(activeControlPanel, "Check: ", optionNameList);
 
     // Inpatient Treatment
-    subPlanActionList = ["EtOH_CIWAOption", "EtOH_PnenobarbOption", "EtOH_IVFluidsOption", "EtOH_ThiamineOption", "EtOH_VitaminsOption", "EtOH_SeizurePrecautionsOption", "EtOH_Ondansetron_OPTION"];
+    subPlanActionList = ["EtOH_CIWAOption", "EtOH_PnenobarbOption", "EtOH_IVFluidsOption", "EtOH_ThiamineOption", 
+                        "EtOH_VitaminsOption", "EtOH_SeizurePrecautionsOption", "EtOH_Ondansetron_OPTION"];
     MedNode_WriteSubPlan("Treat", subPlanActionList);
 
     // Consults
@@ -2652,14 +2656,35 @@ WriteOsteoporosisPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var optionNameList = [];
 
     planStr = "Osteoporosis";
+    modifierStr = MedNote_GetCPOptionValue("Osteoporosis_PossibleModifier");
+    if ((modifierStr != null) && (modifierStr != "")) {
+        planStr = modifierStr + planStr;
+    }
     activeControlPanel = MedNote_StartNewPlanSection(planStr, "OsteoporosisPlan");
     if (!activeControlPanel) {
         LogEvent("WriteOsteoporosisPlan. activeControlPanel is null");
         return;
     }
 
+    // Status
+    WriteCommentIfSelected(activeControlPanel, "Osteoporosis_PastFractureOption");
+    WriteCommentIfSelected(activeControlPanel, "Osteoporosis_PastDEXAOption");
+    WriteCommentIfSelected(activeControlPanel, "Osteoporosis_HomeMedsOption");
+
+    // Workup
+    optionNameList = [ "Osteoporosis_VitDOption", "Osteoporosis_ICalOption", "Osteoporosis_TSHOption"];
+    WriteListOfSelectedActions(activeControlPanel, "Check: ", optionNameList);
+
+    // Inpatient Treatment
+    subPlanActionList = ["Osteoporosis_CholecalOption"];
+    MedNode_WriteSubPlan("Treat", subPlanActionList);
+
+    // On Discharge Treatment
+    subPlanActionList = ["Osteoporosis_AlendronateOption", "Osteoporosis_DEXAOption", "Osteoporosis_RenalClinicOption", "Osteoporosis_EndocrineClinicOption"];
+    MedNode_WriteSubPlan("On Discharge", subPlanActionList);
 } // WriteOsteoporosisPlan
 
 
@@ -2765,6 +2790,7 @@ WriteHypERkalemiaPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var optionNameList = [];
 
     planStr = "Hyperkalemia";
     if (PrintSingleLinePlanAtEnd('HyperkalemiaPlan', planStr, "Monitor")) {
@@ -2784,7 +2810,7 @@ WriteHypERkalemiaPlan() {
     var currentUrineCr = GetFloatInputForControlPanel(activeControlPanel, 'INPUT_URINE_CR_CP');
     var urineOsm = GetFloatInputForControlPanel(activeControlPanel, 'INPUT_URINE_OSM_CP');
 
-    var optionNameList = [ "HighPotassiumShowKOption"];
+    optionNameList = [ "HighPotassiumShowKOption"];
     var valueList = [ "", "", ""];
     var valueNameList = [ "INPUT_SERUM_K_CP"];
     WriteListOfSelectedValuesWithDescriptions(activeControlPanel, optionNameList, valueList, valueNameList);
@@ -2818,7 +2844,7 @@ WriteHypERkalemiaPlan() {
     }
     WriteCommentIfSelected(activeControlPanel, 'HighPotassiumExplainFEKGOption');
 
-    var optionNameList = [ "HighPotassiumEtiologyRTA4Option", "HighPotassiumEtiologySeizuresOption", "HighPotassiumEtiologyTumorLysisOption", 
+    optionNameList = [ "HighPotassiumEtiologyRTA4Option", "HighPotassiumEtiologySeizuresOption", "HighPotassiumEtiologyTumorLysisOption", 
                             "HighPotassiumEtiologySaltSubstituteOption", "HighPotassiumEtiologyDigoxinOption" ];
     WriteListOfSelectedValues(activeControlPanel, "Possible causes include: ", false, "", optionNameList, "");
 
@@ -3224,7 +3250,7 @@ WriteVitaminDPlan() {
     }
 
     var optionNameList = [ 'LOWVITD_HOME_MEDS_OPTION' ]; 
-    WriteListOfSelectedValues(activeControlPanel, "Home regimen includes: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Home regimen includes: ", false, "", optionNameList, "");
 
     WriteCommentIfSelected(activeControlPanel, "LOWVITD_VITDLEVEL_OPTION");
     WriteCommentIfSelected(activeControlPanel, "LOWVITD_SHOW_TSCORE_OPTION");
@@ -3278,7 +3304,7 @@ WriteOncologyPlan() {
 
     WriteCommentIfSelected(activeControlPanel, "ONCOLOGY_STATUS_WHEN_DIAG_OPTION");
     var optionNameList = [ 'ONCOLOGY_STATUS_SP_SURGERY_OPTION', 'ONCOLOGY_STATUS_SP_CHEMO_OPTION', 'ONCOLOGY_STATUS_SP_XRT_OPTION' ]; 
-    WriteListOfSelectedValues(activeControlPanel, "The patient is ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "The patient is ", false, "", optionNameList, "");
 
     WriteCommentIfSelected(activeControlPanel, "ONCOLOGY_STATUS_ECOG_OPTION");
     WriteCommentIfSelected(activeControlPanel, "ONCOLOGY_STATUS_BASELINE_URATE_OPTION");
@@ -4466,7 +4492,7 @@ WriteCovidPlan() {
     optionNameList = [ "CovidRiskAgeOver65Option", "CovidRiskDM2Option", "CovidRiskAsthmaOption", "CovidRiskCOPDOption", 
                            "CovidRiskTobaccoOption", "CovidRiskObeseOption", "CovidRiskCADOption", "CovidRiskCHFOption", 
                            "CovidRiskCVAOption", "CovidRiskLungDiseaseOption", "CovidRiskCirrhosisOption", 
-                           "CovidRiskImmuneSuppressionOption", "CovidRiskCFOption", "CovidRiskSickleCellOption", "CovidRiskCancerOption"]
+                           "CovidRiskImmuneSuppressionOption", "CovidRiskCFOption", "CovidRiskSickleCellOption", "CovidRiskCancerOption"];
     WriteListOfSelectedValues(activeControlPanel, "The patient has the following clinical risk factors: ", false, "", optionNameList, "");
 
     // Care Plan
@@ -4568,12 +4594,12 @@ WriteAnemiaPlan() {
 
     // Type
     var optionNameList = [ "AnemiaShowHgbOption", "AnemiaShowPltsOption", "AnemiaShowMCVOption"];
-    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "", false, "", optionNameList, "");
     WriteCommentIfSelected(activeControlPanel, "AnemiaShowBUNOption");
 
     optionNameList = [ "AnemiaDiffBloodLossOption", "AnemiaDiffHemolysisOption", "AnemiaDiffChronicdiseaseOption", 
                             "AnemiaDiffUnderproductionOption", "AnemiaDiffSequestrationOption"];
-    WriteListOfSelectedValues(activeControlPanel, "Possible causes include: ", false, "", optionNameList, "")
+    WriteListOfSelectedValues(activeControlPanel, "Possible causes include: ", false, "", optionNameList, "");
 
     ////////////////////////////////////////////////////////////
     // Results
@@ -5490,6 +5516,8 @@ WriteChestPainPlan() {
     var activeControlPanel = null;
     var planStr = "";
     var modifierStr = "";
+    var subPlanActionList = [];
+
 
     planStr = "Chest Pain";
     modifierStr = MedNote_GetCPOptionValue("NSTEMITitleOption");
@@ -5545,7 +5573,7 @@ WriteChestPainPlan() {
 
     ///////////////////
     // Eval
-    var subPlanActionList = ["NSTEMICheckEKGOption", "NSTEMICheckTroponinsOption", "NSTEMIAMEKGOption", 
+    subPlanActionList = ["NSTEMICheckEKGOption", "NSTEMICheckTroponinsOption", "NSTEMIAMEKGOption", 
                             "NSTEMIUDSOption", "NSTEMIGetLipidOption", "NSTEMIGetA1cOption", 
                             "NSTEMIGetEchoOption", "NSTEMICheckICDOption"];
     MedNode_WriteSubPlan("Workup", subPlanActionList);
@@ -5553,27 +5581,27 @@ WriteChestPainPlan() {
 
     ///////////////////
     // Anti-Platelet
-    var subPlanActionList = ["NSTEMIAsaOption", "NSTEMITicagrelorOption", "NSTEMIPlavixOption"];
+    subPlanActionList = ["NSTEMIAsaOption", "NSTEMITicagrelorOption", "NSTEMIPlavixOption"];
     MedNode_WriteSubPlan("Anti-Platelet", subPlanActionList);
 
     ///////////////////
     // Anti-Coag
-    var subPlanActionList = ["NSTEMIHeparinDripOption", "NSTEMILovenoxOption"];
+    subPlanActionList = ["NSTEMIHeparinDripOption", "NSTEMILovenoxOption"];
     MedNode_WriteSubPlan("Anti-Coagulation", subPlanActionList);
 
     ///////////////////
     // Statin
-    var subPlanActionList = ["NSTEMIStatinOption"];
+    subPlanActionList = ["NSTEMIStatinOption"];
     MedNode_WriteSubPlan("Statin", subPlanActionList);
 
     ///////////////////
     // Beta Blocker
-    var subPlanActionList = ["NSTEMIMetoprololTarOption", "NSTEMIMetoprololSuccOption", "NSTEMICarvedilolOption"];
+    subPlanActionList = ["NSTEMIMetoprololTarOption", "NSTEMIMetoprololSuccOption", "NSTEMICarvedilolOption"];
     MedNode_WriteSubPlan("Beta Blocker", subPlanActionList);
 
     ///////////////////
     // ACE/ARB/ARNI
-    var subPlanActionList = ["NSTEMIARNIOption", "NSTEMILisinoprilOption", "NSTEMILosartanOption", "NSTEMISpironiolactoneOption"];
+    subPlanActionList = ["NSTEMIARNIOption", "NSTEMILisinoprilOption", "NSTEMILosartanOption", "NSTEMISpironiolactoneOption"];
     MedNode_WriteSubPlan("ACE/ARB/ARNI", subPlanActionList);
 
 
@@ -5606,8 +5634,11 @@ WriteHyponatremiaPlan() {
     var activeControlPanel = null;
     var adjustedNa = -1;
     var electrolyteFreeWaterClearancePercent = -1;
-    var osmFreeWaterClearancePercent = -1
+    var osmFreeWaterClearancePercent = -1;
     var estimatedFreeWaterClearancePercent = -1
+    var urineLyteConcentration;
+    var fractionOfUrineThatIsIsoOsmolar;
+    var fractionOfUrineThatIsIsPureWater;
 
     ///////////////////
     // Start the plan section
@@ -5664,17 +5695,17 @@ WriteHyponatremiaPlan() {
     // Am J Physiol Renal Physiol 288: F1–F7, 2005;
     // http://ajprenal.physiology.org/content/ajprenal/288/1/F1.full.pdf
     if ((currentNa > 0) && (currentUrineNa > 0) && (currentUrineK > 0)) {
-        var urineLyteConcentration = currentUrineNa + currentUrineK;
-        var fractionOfUrineThatIsIsoOsmolar = urineLyteConcentration / currentNa;
-        var fractionOfUrineThatIsIsPureWater = 1 - fractionOfUrineThatIsIsoOsmolar;
+        urineLyteConcentration = currentUrineNa + currentUrineK;
+        fractionOfUrineThatIsIsoOsmolar = urineLyteConcentration / currentNa;
+        fractionOfUrineThatIsIsPureWater = 1 - fractionOfUrineThatIsIsoOsmolar;
         electrolyteFreeWaterClearancePercent = fractionOfUrineThatIsIsPureWater * 100;
         // Round to an integer
         electrolyteFreeWaterClearancePercent = Math.round(electrolyteFreeWaterClearancePercent);
         estimatedFreeWaterClearancePercent = electrolyteFreeWaterClearancePercent;
     }
     if ((estimatedFreeWaterClearancePercent < 0) && (currentUOsm > 0) && (currentSOsm > 0)) {
-        var fractionOfUrineThatIsIsoOsmolar = currentUOsm / currentSOsm;
-        var fractionOfUrineThatIsIsPureWater = 1 - fractionOfUrineThatIsIsoOsmolar;
+        fractionOfUrineThatIsIsoOsmolar = currentUOsm / currentSOsm;
+        fractionOfUrineThatIsIsPureWater = 1 - fractionOfUrineThatIsIsoOsmolar;
         osmFreeWaterClearancePercent = fractionOfUrineThatIsIsPureWater * 100;
         // Round to an integer
         osmFreeWaterClearancePercent = Math.round(osmFreeWaterClearancePercent);
@@ -5694,7 +5725,7 @@ WriteHyponatremiaPlan() {
     planStr = MedNote_GetCPOptionValue("HypONaShowCurrentNaOption");
     if ((planStr != null) && (planStr != "")) {
         if (currentNa > 0) {
-            planStr += currentNa
+            planStr += currentNa;
         }
         WriteComment(planStr);
     }
@@ -5712,7 +5743,7 @@ WriteHyponatremiaPlan() {
     planStr = MedNote_GetCPOptionValue("HypONaShowSOsmOption");
     if ((planStr != null) && (planStr != "")) {
         if ((currentSOsmStr != null) && (currentSOsmStr != "")) {
-            planStr += currentSOsmStr
+            planStr += currentSOsmStr;
         }
         WriteComment(planStr);
     }
@@ -5724,7 +5755,7 @@ WriteHyponatremiaPlan() {
     planStr = MedNote_GetCPOptionValue("HypONaShowUOsmOption");
     if ((planStr != null) && (planStr != "")) {
         if (currentUOsm > 0) {
-            planStr += currentUOsm
+            planStr += currentUOsm;
         }
         WriteComment(planStr);
     }
@@ -5732,7 +5763,7 @@ WriteHyponatremiaPlan() {
     planStr = MedNote_GetCPOptionValue("HypONaShowFreeWaterClearanceOption");
     if ((planStr != null) && (planStr != "")) {
         if (estimatedFreeWaterClearancePercent > 0) {
-            planStr += estimatedFreeWaterClearancePercent + "% free water"
+            planStr += estimatedFreeWaterClearancePercent + "% free water";
         } else {
             planStr += "xxxx % free water";
         }
@@ -5871,7 +5902,7 @@ WritePreventionPlan() {
     WriteListOfSelectedActions(activeControlPanel, "Osteoporosis screening, check ", optionNameList);
 
     // Vaccinations
-    var optionNameList = [ "Prevention_Give_Flu_Option", "Prevention_Give_Covid_Option", "Prevention_Give_Pneumovax_Option", 
+    optionNameList = [ "Prevention_Give_Flu_Option", "Prevention_Give_Covid_Option", "Prevention_Give_Pneumovax_Option", 
         "Prevention_Give_Zostervax_Option", "Prevention_Give_HepA_Vax_Option", "Prevent;ion_Give_HepB_Vax_Option", "Prevention_Give_HPV_Option" ];
     WriteListOfSelectedActions(activeControlPanel, "Vaccinations: ", optionNameList);
 
@@ -6184,6 +6215,7 @@ ComputeEstGFR(currrentCr, patientAge, cystatinC, weightInKg, fIsMale) {
     //LogEvent("ComputeEstGFR weightInKg = " + weightInKg);
     //LogEvent("ComputeEstGFR fIsMale = " + fIsMale);
     var scaler;
+    var creatKappaRatio;
 
     g_GFR_MDRD = 0;
     g_GFR_CockroftGault = 0;
@@ -6257,7 +6289,7 @@ ComputeEstGFR(currrentCr, patientAge, cystatinC, weightInKg, fIsMale) {
             alpha = -0.302;
         }
 
-        var creatKappaRatio = currrentCr / kappa;
+        creatKappaRatio = currrentCr / kappa;
 
         g_GFR_CKDEPI = 142;
         if (creatKappaRatio < 1) {
@@ -6291,7 +6323,7 @@ ComputeEstGFR(currrentCr, patientAge, cystatinC, weightInKg, fIsMale) {
 
         g_GFR_CKDEPI_Creatinine_CystatinC = 135;
 
-        var creatKappaRatio = currrentCr / kappa;
+        creatKappaRatio = currrentCr / kappa;
         if (creatKappaRatio < 1) {
             g_GFR_CKDEPI_Creatinine_CystatinC = g_GFR_CKDEPI_Creatinine_CystatinC * Math.pow(creatKappaRatio, alpha);
         }
